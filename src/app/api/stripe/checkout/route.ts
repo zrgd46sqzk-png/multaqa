@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getStripe } from "@/lib/payments/stripe";
+import { countries, paymentMethodFor, type CountryCode } from "@/lib/i18n/config";
 
 export async function POST(request: NextRequest) {
-  const { productSlug, locale } = await request.json();
-  if (!productSlug || !locale) {
-    return NextResponse.json({ error: "Missing productSlug or locale" }, { status: 400 });
+  const { productSlug, locale, country } = await request.json();
+  if (!productSlug || !locale || !country) {
+    return NextResponse.json({ error: "Missing productSlug, locale, or country" }, { status: 400 });
+  }
+  if (!(countries as readonly string[]).includes(country) || paymentMethodFor(country as CountryCode) !== "stripe") {
+    return NextResponse.json({ error: "This country does not use card checkout" }, { status: 400 });
   }
 
   const supabase = createServerSupabaseClient();
@@ -49,7 +53,7 @@ export async function POST(request: NextRequest) {
     metadata: {
       product_id: product.id,
       user_id: user.id,
-      country: "AE",
+      country,
       currency: "AED",
       amount: String(product.price_aed),
     },

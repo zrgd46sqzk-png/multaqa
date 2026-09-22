@@ -21,8 +21,6 @@ export interface Dictionary {
   };
   country: {
     label: string;
-    ae: string;
-    eg: string;
   };
   product: {
     buyNow: string;
@@ -81,14 +79,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     home: {
       heroTitle: "Everything you need, in one place",
       heroSubtitle:
-        "AI-made digital products, practical courses, and games for couples — built for readers in the UAE and Egypt.",
+        "AI-made digital products, practical courses, and games for couples — built for readers across the Arab world.",
       browse: "Browse all products",
       categoriesTitle: "Shop by category",
     },
     country: {
       label: "Shopping for",
-      ae: "UAE (AED)",
-      eg: "Egypt (EGP)",
     },
     product: {
       buyNow: "Buy now",
@@ -145,14 +141,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     home: {
       heroTitle: "كل شي تحتاجه، في مكان واحد",
       heroSubtitle:
-        "منتجات رقمية بالذكاء الاصطناعي، دورات عملية، وألعاب للأزواج — مصممة لقراء في الإمارات ومصر.",
+        "منتجات رقمية بالذكاء الاصطناعي، دورات عملية، وألعاب للأزواج — مصممة لقراء في الوطن العربي.",
       browse: "تصفح جميع المنتجات",
       categoriesTitle: "تسوق حسب الفئة",
     },
     country: {
       label: "التسوق لـ",
-      ae: "الإمارات (درهم)",
-      eg: "مصر (جنيه)",
     },
     product: {
       buyNow: "اشترِ الآن",

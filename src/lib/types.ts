@@ -1,3 +1,5 @@
+import type { CountryCode } from "@/lib/i18n/config";
+
 export type CategorySlug = "ai_products" | "courses" | "couple_games";
 
 export type OrderStatus = "pending" | "paid" | "rejected";
@@ -36,7 +38,7 @@ export interface Order {
   id: string;
   user_id: string;
   product_id: string;
-  country: "AE" | "EG";
+  country: CountryCode;
   currency: "AED" | "EGP";
   amount: number;
   payment_method: PaymentMethod;

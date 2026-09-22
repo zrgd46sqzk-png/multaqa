@@ -1,8 +1,9 @@
 # Multaqa (ملتقى)
 
-A bilingual (English/Arabic) digital-products storefront for the UAE and Egypt — AI digital
-products, courses, and couple games — with Stripe checkout for the UAE and a manual
-InstaPay-confirmation flow for Egypt.
+A bilingual (English/Arabic) digital-products storefront for the Arab world — AI digital
+products, courses, and couple games — with Stripe checkout (AED, via a UAE Stripe account)
+for every Arab League country except Egypt, and a manual InstaPay-confirmation flow for
+Egypt, which has no Stripe merchant support.
 
 This is a real, working codebase, not a template — but it depends on a few external
 accounts that only you can create (Supabase, Stripe, an InstaPay number). Follow the
@@ -13,7 +14,9 @@ steps below in order; the app won't run without them.
 1. Create a project at [supabase.com](https://supabase.com).
 2. In the SQL editor, run the contents of `supabase/migrations/0001_init.sql`. This creates
    all tables, Row Level Security policies, and the three storage buckets
-   (`product-files`, `payment-proofs` — both private; `product-covers` — public).
+   (`product-files`, `payment-proofs` — both private; `product-covers` — public). Then run
+   `supabase/migrations/0002_arab_countries.sql`, which widens `orders.country` from just
+   `AE`/`EG` to the full Arab League list.
 3. In **Authentication → URL Configuration**, add your site URL and
    `<site-url>/auth/callback` as a redirect URL (also add `http://localhost:3000/auth/callback`
    for local dev). Sign-in uses passwordless magic links, so no extra auth provider setup
@@ -73,9 +76,13 @@ Supabase's redirect list.
 
 ## How the two payment paths work
 
-- **UAE (AED):** `Buy now` → Stripe Checkout → on `checkout.session.completed`, the
-  webhook (`src/app/api/stripe/webhook/route.ts`) creates the order as `paid` and the
-  download unlocks immediately.
+- **Every Arab League country except Egypt (AED):** `Buy now` → Stripe Checkout, charged
+  in AED regardless of which of those countries the buyer selects (one UAE Stripe
+  account, one currency — Stripe settles the conversion) → on
+  `checkout.session.completed`, the webhook (`src/app/api/stripe/webhook/route.ts`)
+  creates the order as `paid` and the download unlocks immediately. Note: Stripe itself
+  excludes Syria and Sudan from card processing (OFAC sanctions), so those two are listed
+  for pricing/country-selection purposes but checkout will fail at Stripe's end.
 - **Egypt (EGP):** buyer sees the InstaPay handle, submits a reference + screenshot
   (`src/app/api/instapay/submit/route.ts`), the order is created as `pending`, and an
   admin approves or rejects it from `/admin/orders`. Approving flips the order to `paid`.

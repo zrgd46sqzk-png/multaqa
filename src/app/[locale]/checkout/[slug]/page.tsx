@@ -1,5 +1,5 @@
 import { redirect, notFound } from "next/navigation";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isLocale, paymentMethodFor, type Locale } from "@/lib/i18n/config";
 import { getProductBySlug } from "@/lib/data";
 import { getCountry } from "@/lib/country";
 import { getDictionary } from "@/lib/i18n/dictionaries";
@@ -41,8 +41,13 @@ export default async function CheckoutPage({
         <p className="mt-1 text-brassDark font-semibold">{formatPrice(amount, currency, locale)}</p>
       </div>
 
-      {country === "AE" ? (
-        <StripeCheckoutButton productSlug={product.slug} locale={locale} label={dict.checkout.payWithCard} />
+      {paymentMethodFor(country) === "stripe" ? (
+        <StripeCheckoutButton
+          productSlug={product.slug}
+          locale={locale}
+          country={country}
+          label={dict.checkout.payWithCard}
+        />
       ) : (
         <InstapayForm productSlug={product.slug} dict={dict} />
       )}

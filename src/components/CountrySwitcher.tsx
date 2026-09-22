@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { COUNTRY_COOKIE } from "@/lib/constants";
-import type { CountryCode, Locale } from "@/lib/i18n/config";
+import { countries, countryMeta, type CountryCode, type Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 export function CountrySwitcher({
@@ -31,8 +31,11 @@ export function CountrySwitcher({
         dir={locale === "ar" ? "rtl" : "ltr"}
         className="rounded border border-line bg-white px-2 py-1"
       >
-        <option value="AE">{dict.country.ae}</option>
-        <option value="EG">{dict.country.eg}</option>
+        {countries.map((code) => (
+          <option key={code} value={code}>
+            {countryMeta[code].label[locale]} ({countryMeta[code].currency})
+          </option>
+        ))}
       </select>
     </label>
   );

@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import type { Locale } from "@/lib/i18n/config";
+import type { CountryCode, Locale } from "@/lib/i18n/config";
 
 export function StripeCheckoutButton({
   productSlug,
   locale,
+  country,
   label,
 }: {
   productSlug: string;
   locale: Locale;
+  country: CountryCode;
   label: string;
 }) {
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ export function StripeCheckoutButton({
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productSlug, locale }),
+        body: JSON.stringify({ productSlug, locale, country }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {
