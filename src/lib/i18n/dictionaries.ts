@@ -52,8 +52,12 @@ export interface Dictionary {
   auth: {
     title: string;
     emailLabel: string;
-    sendLink: string;
-    checkEmail: string;
+    passwordLabel: string;
+    signIn: string;
+    signUp: string;
+    toggleToSignup: string;
+    toggleToSignin: string;
+    confirmEmailSent: string;
   };
   footer: {
     rights: string;
@@ -114,8 +118,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     auth: {
       title: "Sign in",
       emailLabel: "Email address",
-      sendLink: "Send magic link",
-      checkEmail: "Check your email for a sign-in link.",
+      passwordLabel: "Password",
+      signIn: "Sign in",
+      signUp: "Create account",
+      toggleToSignup: "Don't have an account? Sign up",
+      toggleToSignin: "Already have an account? Sign in",
+      confirmEmailSent: "Account created. Check your email to confirm it, then sign in.",
     },
     footer: {
       rights: "All rights reserved.",
@@ -174,8 +182,12 @@ export const dictionaries: Record<Locale, Dictionary> = {
     auth: {
       title: "تسجيل الدخول",
       emailLabel: "البريد الإلكتروني",
-      sendLink: "إرسال رابط الدخول",
-      checkEmail: "تحقق من بريدك الإلكتروني لرابط تسجيل الدخول.",
+      passwordLabel: "كلمة المرور",
+      signIn: "تسجيل الدخول",
+      signUp: "إنشاء حساب",
+      toggleToSignup: "ليس لديك حساب؟ إنشاء حساب",
+      toggleToSignin: "لديك حساب بالفعل؟ تسجيل الدخول",
+      confirmEmailSent: "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيده، ثم سجّل الدخول.",
     },
     footer: {
       rights: "جميع الحقوق محفوظة.",
