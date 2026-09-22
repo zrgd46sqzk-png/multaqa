@@ -2,10 +2,15 @@
 // inserts/updates their product rows. Run with `npm run seed` after the
 // database migration has been applied and .env.local has real Supabase
 // credentials (including SUPABASE_SERVICE_ROLE_KEY).
-import "dotenv/config";
 import { readFileSync } from "node:fs";
 import path from "node:path";
+import { config as loadEnv } from "dotenv";
 import { createClient } from "@supabase/supabase-js";
+
+// Next.js conventionally keeps local secrets in .env.local (not .env);
+// dotenv's default `import "dotenv/config"` only reads .env, so load the
+// right file explicitly.
+loadEnv({ path: path.join(__dirname, "../../.env.local") });
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
