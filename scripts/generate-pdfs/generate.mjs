@@ -10,6 +10,10 @@ import { visualPromptsHtml } from "./content/visualPrompts.mjs";
 import { dareAndHonestyHtml } from "./content/dareAndHonesty.mjs";
 import { breakRoutineHtml } from "./content/breakRoutine.mjs";
 import { firstDateHtml } from "./content/firstDate.mjs";
+import { marketingCourseHtml } from "./content/marketingCourse.mjs";
+import { freelancingCourseHtml } from "./content/freelancingCourse.mjs";
+import { ecommerceCourseHtml } from "./content/ecommerceCourse.mjs";
+import { productivityCourseHtml } from "./content/productivityCourse.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -28,6 +32,10 @@ const pageDocuments = [
     title: "برومبتات احترافية لتوليد وتعديل الصور والفيديو",
     html: visualPromptsHtml(),
   },
+  { slug: "ai-marketing-course", title: "التسويق الرقمي بالذكاء الاصطناعي", html: marketingCourseHtml() },
+  { slug: "freelancing-course", title: "العمل الحر للمبتدئين", html: freelancingCourseHtml() },
+  { slug: "ai-ecommerce-course", title: "الذكاء الاصطناعي للتجارة الإلكترونية", html: ecommerceCourseHtml() },
+  { slug: "ai-productivity-course", title: "الإنتاجية بالذكاء الاصطناعي", html: productivityCourseHtml() },
 ];
 
 const slideDocuments = [

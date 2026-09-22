@@ -86,6 +86,50 @@ const catalog = [
     price_egp: AI_PRICE_EGP,
   },
   {
+    slug: "ai-marketing-course",
+    category: "courses",
+    file: "ai-marketing-course.pdf",
+    cover: "ai-marketing-course.jpg",
+    title: "التسويق الرقمي بالذكاء الاصطناعي",
+    description:
+      "10 وحدات عملية لبناء تسويق فعّال لمشروعك باستخدام الذكاء الاصطناعي (24 صفحة) — من فهم عميلك وكتابة الإعلانات، إلى تحليل المنافسين وبناء نظام أسبوعي يعمل باستمرار. كل وحدة مع مثال عملي كامل وتمرين تطبيقي.",
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
+  },
+  {
+    slug: "freelancing-course",
+    category: "courses",
+    file: "freelancing-course.pdf",
+    cover: "freelancing-course.jpg",
+    title: "العمل الحر للمبتدئين: من الصفر إلى أول عميل",
+    description:
+      "10 وحدات عملية لبدء رحلتك في العمل الحر بثقة (24 صفحة) — من تحديد تخصصك وبناء ملف أعمالك، إلى التسعير الصحيح والتعامل مع العملاء وبناء دخل مستدام. كل وحدة مع مثال عملي كامل وتمرين تطبيقي.",
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
+  },
+  {
+    slug: "ai-ecommerce-course",
+    category: "courses",
+    file: "ai-ecommerce-course.pdf",
+    cover: "ai-ecommerce-course.jpg",
+    title: "الذكاء الاصطناعي للتجارة الإلكترونية",
+    description:
+      "10 وحدات عملية لأصحاب المتاجر الإلكترونية (24 صفحة) — من كتابة أوصاف المنتجات وإعلانات تحقق مبيعات، إلى إدارة العملاء والمخزون وبناء ولاء حقيقي. كل وحدة مع مثال عملي كامل وتمرين تطبيقي.",
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
+  },
+  {
+    slug: "ai-productivity-course",
+    category: "courses",
+    file: "ai-productivity-course.pdf",
+    cover: "ai-productivity-course.jpg",
+    title: "الإنتاجية بالذكاء الاصطناعي",
+    description:
+      "10 وحدات عملية لإدارة وقتك بذكاء أكبر لا بجهد أكثر (24 صفحة) — من تصميم يومك حول طاقتك، إلى التخلص من قوائم المهام المرهقة وبناء وتيرة عمل مستدامة تتجنب الاحتراق. كل وحدة مع مثال عملي كامل وتمرين تطبيقي.",
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
+  },
+  {
     slug: "netaarafu-aktar",
     category: "couple_games",
     file: "netaarafu-aktar.pdf",

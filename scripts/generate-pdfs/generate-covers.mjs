@@ -10,6 +10,10 @@ import { visualPromptsHtml } from "./content/visualPrompts.mjs";
 import { dareAndHonestyHtml } from "./content/dareAndHonesty.mjs";
 import { breakRoutineHtml } from "./content/breakRoutine.mjs";
 import { firstDateHtml } from "./content/firstDate.mjs";
+import { marketingCourseHtml } from "./content/marketingCourse.mjs";
+import { freelancingCourseHtml } from "./content/freelancingCourse.mjs";
+import { ecommerceCourseHtml } from "./content/ecommerceCourse.mjs";
+import { productivityCourseHtml } from "./content/productivityCourse.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -29,6 +33,10 @@ const items = [
   { slug: "jaraa-wa-sarahah", type: "slide", html: dareAndHonestyHtml() },
   { slug: "kasr-al-rotine", type: "slide", html: breakRoutineHtml() },
   { slug: "awal-maweed", type: "slide", html: firstDateHtml() },
+  { slug: "ai-marketing-course", type: "page", html: marketingCourseHtml() },
+  { slug: "freelancing-course", type: "page", html: freelancingCourseHtml() },
+  { slug: "ai-ecommerce-course", type: "page", html: ecommerceCourseHtml() },
+  { slug: "ai-productivity-course", type: "page", html: productivityCourseHtml() },
 ];
 
 function fullPage(bodyHtml, bodyClass) {
