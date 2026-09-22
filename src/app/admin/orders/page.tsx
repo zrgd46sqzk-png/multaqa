@@ -17,14 +17,18 @@ interface PendingOrder {
 export default async function AdminOrdersPage() {
   const { supabase } = await requireAdmin();
 
-  const { data } = await supabase
+  // orders has two foreign keys into profiles (user_id and reviewed_by), so
+  // the embed must name which one — otherwise PostgREST rejects the query
+  // as ambiguous and this silently returns no rows.
+  const { data, error } = await supabase
     .from("orders")
     .select(
-      "id, currency, amount, instapay_reference, proof_path, created_at, products(title_en), profiles(email)"
+      "id, currency, amount, instapay_reference, proof_path, created_at, products(title_en), profiles!orders_user_id_fkey(email)"
     )
     .eq("status", "pending")
     .order("created_at", { ascending: true });
 
+  if (error) console.error("Failed to load pending orders:", error.message);
   const orders = (data as unknown as PendingOrder[]) ?? [];
 
   const withProofUrls = await Promise.all(
