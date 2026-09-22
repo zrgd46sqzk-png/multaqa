@@ -1,7 +1,8 @@
-// Uploads the launch catalog's deliverable files to Supabase Storage and
-// inserts/updates their product rows. Run with `npm run seed` after the
-// database migration has been applied and .env.local has real Supabase
-// credentials (including SUPABASE_SERVICE_ROLE_KEY).
+// Uploads the launch catalog's deliverable files + cover images to
+// Supabase Storage and inserts/updates their product rows. Run with
+// `npm run seed` after the database migration has been applied and
+// .env.local has real Supabase credentials (including
+// SUPABASE_SERVICE_ROLE_KEY).
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { config as loadEnv } from "dotenv";
@@ -25,18 +26,20 @@ const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
 });
 
 const PRODUCTS_DIR = path.join(__dirname, "../../content/products");
+const COVERS_DIR = path.join(__dirname, "../../content/covers");
 
+// All product names/descriptions are Arabic-only, in both the _en and _ar
+// columns — the site UI (nav, buttons) stays bilingual, but the products
+// themselves are an Arabic-only catalog.
 const catalog = [
   {
     slug: "ai-prompt-pack-productivity",
     category: "ai_products",
     file: "ai-prompt-pack-productivity.pdf",
-    title_en: "30 AI Prompts for Work & Productivity",
-    title_ar: "30 برومبت ذكاء اصطناعي للعمل والإنتاجية",
-    description_en:
-      "A copy-paste pack of 30 prompts for email, meetings, planning, and research — each built for a specific, common situation, not a generic template.",
-    description_ar:
-      "حزمة من 30 برومبت جاهز للنسخ واللصق لكتابة الإيميلات، تلخيص الاجتماعات، التخطيط، والبحث — كل برومبت مصمم لموقف محدد ومتكرر، وليس قالبًا عامًا.",
+    cover: "ai-prompt-pack-productivity.jpg",
+    title: "30 برومبت ذكاء اصطناعي للعمل والإنتاجية",
+    description:
+      "حزمة من 30 برومبت جاهز للنسخ واللصق لكتابة الإيميلات، تلخيص الاجتماعات، التخطيط، والبحث اليومي. كل برومبت مصمم لموقف محدد ومتكرر يواجهه أي شخص في عمله، مع نصيحة عملية لكل واحد لتحصل على أفضل نتيجة من أول محاولة.",
     price_aed: 15,
     price_egp: 150,
   },
@@ -44,12 +47,10 @@ const catalog = [
     slug: "beginners-guide-to-ai",
     category: "ai_products",
     file: "beginners-guide-to-ai.pdf",
-    title_en: "The Beginner's Guide to Using AI Every Day",
-    title_ar: "دليل المبتدئين لاستخدام الذكاء الاصطناعي يوميًا",
-    description_en:
-      "A short, practical guide to getting real, everyday value out of an AI assistant — no hype, no technical background required.",
-    description_ar:
-      "دليل عملي وقصير لاستخدام مساعد الذكاء الاصطناعي في حياتك اليومية — بدون مبالغة وبدون الحاجة لخلفية تقنية.",
+    cover: "beginners-guide-to-ai.jpg",
+    title: "دليل المبتدئين لاستخدام الذكاء الاصطناعي يوميًا",
+    description:
+      "دليل عملي من 8 أقسام يشرح كيف تستخدم مساعد الذكاء الاصطناعي في حياتك اليومية بثقة — من فهم كيف يعمل فعليًا، إلى العادات التي تصنع فرقًا حقيقيًا في جودة إجاباته، وصولًا إلى قائمة تحقق عملية لأسبوعك الأول.",
     price_aed: 20,
     price_egp: 200,
   },
@@ -57,34 +58,39 @@ const catalog = [
     slug: "prompting-101-course",
     category: "courses",
     file: "prompting-101-course.pdf",
-    title_en: "Prompting 101: A Practical Course",
-    title_ar: "أساسيات البرومبت: دورة عملية",
-    description_en:
-      "Five short modules that take you from typing random questions into a chat box to prompting deliberately — with an exercise after each one.",
-    description_ar:
-      "خمس وحدات قصيرة تأخذك من مجرد كتابة أسئلة عشوائية إلى صياغة برومبت مدروس بعناية — مع تمرين عملي بعد كل وحدة.",
+    cover: "prompting-101-course.jpg",
+    title: "أساسيات البرومبت: دورة عملية شاملة",
+    description:
+      "دورة شاملة من 10 وحدات (أكثر من 24 صفحة) تأخذك من الأساسيات إلى تقنيات متقدمة كسلاسل البرومبت وتقييم الإجابات. كل وحدة تتضمن شرحًا مفصلًا، مثالًا عمليًا كاملًا ببرومبت حقيقي ونموذج رد، وتمرينًا تطبيقيًا لترسيخ ما تعلمته.",
     price_aed: 45,
     price_egp: 450,
   },
   {
-    slug: "date-night-deck",
+    slug: "netaarafu-aktar",
     category: "couple_games",
-    file: "date-night-deck.pdf",
-    title_en: "Date Night Deck: 80 Questions & Challenges",
-    title_ar: "مجموعة ليلة الموعد: 80 سؤالًا وتحديًا",
-    description_en:
-      "Five rounds for couples — from icebreakers to deep questions, playful challenges, quick-fire choices, and shared memories.",
-    description_ar:
-      "خمس جولات من الأسئلة والتحديات للأزواج — من كسر الجليد إلى الأسئلة العميقة والتحديات الممتعة والاختيارات السريعة والذكريات المشتركة.",
+    file: "netaarafu-aktar.pdf",
+    cover: "netaarafu-aktar.jpg",
+    title: "نتعرف اكثر",
+    description:
+      "40 سؤالًا مصممة لتقرّب بينكما أكثر — من ذكريات البدايات إلى الأحلام المشتركة. كل سؤال في شريحة واحدة بتصميم رومانسي أنيق، جاهزة للعرض على الهاتف أو الكمبيوتر في ليلة هادئة معًا.",
     price_aed: 25,
     price_egp: 250,
   },
 ];
 
+// The old bilingual English deck is retired — hide it rather than delete it.
+const retiredSlugs = ["date-night-deck"];
+
 async function main() {
   const { data: categories, error: categoriesError } = await supabase.from("categories").select("id, slug");
   if (categoriesError) throw categoriesError;
   const categoryIdBySlug = new Map((categories ?? []).map((c) => [c.slug, c.id]));
+
+  for (const slug of retiredSlugs) {
+    const { error } = await supabase.from("products").update({ status: "draft" }).eq("slug", slug);
+    if (error) console.error(`Failed to retire ${slug}:`, error.message);
+    else console.log(`Retired (set to draft): ${slug}`);
+  }
 
   for (const item of catalog) {
     const categoryId = categoryIdBySlug.get(item.category);
@@ -99,10 +105,10 @@ async function main() {
         {
           slug: item.slug,
           category_id: categoryId,
-          title_en: item.title_en,
-          title_ar: item.title_ar,
-          description_en: item.description_en,
-          description_ar: item.description_ar,
+          title_en: item.title,
+          title_ar: item.title,
+          description_en: item.description,
+          description_ar: item.description,
           price_aed: item.price_aed,
           price_egp: item.price_egp,
           status: "published",
@@ -117,6 +123,7 @@ async function main() {
       continue;
     }
 
+    // Deliverable file
     const filePath = path.join(PRODUCTS_DIR, item.file);
     const fileBuffer = readFileSync(filePath);
     const storagePath = `${product.id}/${item.file}`;
@@ -140,6 +147,22 @@ async function main() {
         .from("product_files")
         .insert({ product_id: product.id, storage_path: storagePath, label: item.file });
       if (fileRowError) console.error(`Failed to insert product_files row for ${item.slug}:`, fileRowError.message);
+    }
+
+    // Cover image (public bucket) — storage path doubles as cover_image_path
+    const coverPath = path.join(COVERS_DIR, item.cover);
+    const coverBuffer = readFileSync(coverPath);
+    const { error: coverUploadError } = await supabase.storage
+      .from("product-covers")
+      .upload(item.cover, coverBuffer, { contentType: "image/jpeg", upsert: true });
+    if (coverUploadError) {
+      console.error(`Failed to upload cover for ${item.slug}:`, coverUploadError.message);
+    } else {
+      const { error: coverColError } = await supabase
+        .from("products")
+        .update({ cover_image_path: item.cover })
+        .eq("id", product.id);
+      if (coverColError) console.error(`Failed to set cover_image_path for ${item.slug}:`, coverColError.message);
     }
 
     console.log(`Seeded: ${item.slug}`);

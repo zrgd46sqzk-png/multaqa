@@ -1,98 +1,247 @@
 const modules = [
   {
-    badge: "Module 1",
-    title: "How AI assistants actually work (and why it matters)",
+    n: 1,
+    title: "كيف يعمل مساعد الذكاء الاصطناعي فعليًا (ولماذا يهم ذلك)",
     body: `
-      <p>Before writing better prompts, it helps to understand what you're prompting. An AI assistant predicts likely next words based on patterns in its training data and the conversation so far. It has no memory between separate conversations, no access to your private context unless you provide it, and no certainty — it produces its best guess, phrased confidently either way.</p>
-      <p>This explains three practical rules that the rest of this course builds on:</p>
+      <p>قبل أن تتعلم كتابة برومبتات أفضل، من المفيد أن تفهم ما الذي تطلبه فعلًا. مساعد الذكاء الاصطناعي يتنبأ بالكلمات التالية الأكثر احتمالًا بناءً على أنماط في بياناته التدريبية والمحادثة حتى تلك اللحظة. ليس لديه ذاكرة بين المحادثات المنفصلة، ولا وصول لسياقك الخاص إلا إذا زوّدته به، ولا يقين — فهو ينتج أفضل تخمين له، معبّرًا عنه بثقة في كل الأحوال.</p>
+      <p>هذا يفسر ثلاث قواعد عملية تُبنى عليها بقية هذه الدورة:</p>
       <ul>
-        <li>Give it context — it can't infer what it wasn't told or shown.</li>
-        <li>Verify anything that must be factually correct — confidence isn't the same as accuracy.</li>
-        <li>Treat each reply as a draft to steer, not a final answer to accept.</li>
+        <li>أعطه السياق — لا يمكنه استنتاج ما لم يُخبَر به أو يُطلع عليه.</li>
+        <li>تحقق من أي شيء يجب أن يكون صحيحًا فعليًا — الثقة ليست دقة.</li>
+        <li>تعامل مع كل رد كمسودة توجّهها، لا كإجابة نهائية تقبلها.</li>
       </ul>
     `,
-    exercise:
-      "Ask an AI assistant to explain what it doesn't know about you. Notice how much context it's missing — that gap is exactly what your prompts need to fill.",
+    exercise: "اطلب من مساعد الذكاء الاصطناعي أن يشرح ما لا يعرفه عنك. لاحظ حجم الفجوة في معلوماته — هذه الفجوة بالضبط هي ما يجب أن تملأه برومبتاتك.",
+    example: {
+      context: "لاحظ الفرق بين حقيقة راسخة وموثقة ومعلومة تحتاج تحققًا دائمًا.",
+      prompt: "متى تأسست دولة الإمارات العربية المتحدة؟",
+      response: "تأسست دولة الإمارات العربية المتحدة في 2 ديسمبر 1971 من خلال اتحاد ست إمارات، وانضمت إليها إمارة رأس الخيمة في فبراير 1972 لتكتمل الإمارات السبع.",
+      takeaway: "هذه إجابة دقيقة لأنها حقيقة تاريخية مستقرة وموثقة على نطاق واسع. لو سألت عن رقم يتغيّر باستمرار (مثل عدد السكان الحالي)، يجب التحقق من المصدر الرسمي دائمًا قبل الاعتماد عليه.",
+    },
   },
   {
-    badge: "Module 2",
-    title: "The anatomy of a good prompt",
+    n: 2,
+    title: "تشريح البرومبت الجيد",
     body: `
-      <p>A strong prompt usually has four parts, though not every prompt needs all four:</p>
+      <p>البرومبت القوي عادة يتكون من أربعة أجزاء، رغم أن كل برومبت لا يحتاجها كلها:</p>
       <ol>
-        <li><strong>Task</strong> — the specific thing you want done ("summarize", "rewrite", "draft", "compare").</li>
-        <li><strong>Context</strong> — the material or situation it needs (paste the actual text; describe the real constraint).</li>
-        <li><strong>Format</strong> — how you want the answer shaped (length, bullet points vs. paragraph, tone).</li>
-        <li><strong>Audience</strong> — who will read the output, which affects vocabulary and formality.</li>
+        <li><strong>المهمة</strong> — الشيء المحدد الذي تريد تنفيذه ("لخّص"، "أعد الصياغة"، "اكتب مسودة"، "قارن").</li>
+        <li><strong>السياق</strong> — المادة أو الموقف الذي يحتاجه (الصق النص الفعلي؛ صف القيد الحقيقي).</li>
+        <li><strong>الشكل</strong> — كيف تريد أن تكون الإجابة (الطول، نقاط أم فقرة، الأسلوب).</li>
+        <li><strong>الجمهور</strong> — من سيقرأ النتيجة، وهذا يؤثر على المفردات ومستوى الرسمية.</li>
       </ol>
-      <p>Compare: <em>"Help with my presentation"</em> vs. <em>"Turn these 6 bullet points into 3 slide titles and one supporting sentence each, for a non-technical audience: [bullets]."</em> The second gives task, context, format, and audience in one line — and needs no follow-up round to fix.</p>
+      <p>كلما حددت الأجزاء الأربعة في طلبك الأول، قلّت الحاجة لجولات تصحيح لاحقة.</p>
     `,
-    exercise:
-      "Take a request you'd normally type in one vague sentence. Rewrite it using all four parts: task, context, format, audience.",
+    exercise: "خذ طلبًا كنت تكتبه عادة في جملة غامضة واحدة. أعد كتابته مستخدمًا الأجزاء الأربعة: المهمة، السياق، الشكل، الجمهور.",
+    example: {
+      context: "قارن بين طلب غامض وطلب يحدد الأجزاء الأربعة بوضوح.",
+      prompt: "اكتب وصف منتج لصندوق شاي فاخر يحتوي على 12 نوعًا مختلفًا، لمتجر إلكتروني يستهدف مشتري الهدايا الفاخرة. اجعله من 3 جمل فقط، بأسلوب راقٍ وبسيط دون مبالغة.",
+      response: "اكتشف عالمًا من النكهات الفاخرة مع صندوق الشاي المكوّن من 12 نوعًا مختارًا بعناية من أجود المزارع حول العالم. كل علبة مصممة لتكون هدية استثنائية تُشعر من يتلقاها بالتقدير الحقيقي. هدية مثالية لمن يستحق لمسة من الرقي في كل رشفة.",
+      takeaway: "تحديد الطول والجمهور والأسلوب في البرومبت أنتج نصًا جاهزًا للاستخدام مباشرة — لم نحتج لأي تعديل يدوي بعده.",
+    },
   },
   {
-    badge: "Module 3",
-    title: "Iterating: the skill that matters more than the first prompt",
+    n: 3,
+    title: "التكرار: المهارة الأهم من البرومبت الأول",
     body: `
-      <p>Nobody writes the perfect prompt on the first try, and you don't need to. The real skill is steering a conversation: get a draft, then respond the way you would to a colleague's first pass — "good direction, but shorter" or "keep the structure, change the tone to more casual."</p>
-      <p>Because the AI can see the whole conversation, each round of feedback compounds — you're not starting over, you're refining. This is faster than trying to perfect a single mega-prompt, and it produces better results because your feedback is concrete instead of hypothetical.</p>
-      <p>A useful mental model: your first prompt gets you to 70%. Two short rounds of feedback get you to 95%. Trying to write one flawless prompt usually wastes more time than it saves.</p>
+      <p>لا أحد يكتب البرومبت المثالي من أول محاولة، ولست بحاجة لذلك. المهارة الحقيقية هي توجيه المحادثة: احصل على مسودة، ثم رُدّ كما لو كنت ترد على أول محاولة من زميل — "اتجاه جيد لكن أقصر" أو "احتفظ بالهيكل، غيّر الأسلوب ليكون أكثر عفوية" — بدلًا من كتابة طلب جديد وأطول من الصفر كل مرة.</p>
+      <p>نموذج ذهني مفيد: برومبتك الأول يوصلك إلى 70%. جولتان قصيرتان من الملاحظات توصلانك إلى 95%. محاولة كتابة برومبت واحد لا تشوبه شائبة عادة تهدر وقتًا أكثر مما توفره.</p>
     `,
-    exercise:
-      "Ask for a first draft of something you need this week. Then give exactly one round of feedback using only 5 words or fewer (e.g. \"more direct, cut the intro\"). Notice how much the result improves for so little effort.",
+    exercise: "اطلب مسودة أولى لشيء تحتاجه هذا الأسبوع. ثم أعطِ جولة ملاحظات واحدة فقط بـ 5 كلمات أو أقل. لاحظ كم تحسّنت النتيجة مقابل هذا الجهد البسيط.",
+    example: {
+      context: "بعد المسودة السابقة (وصف صندوق الشاي)، بدلًا من إعادة كتابة الطلب، استخدم ملاحظة قصيرة ومباشرة.",
+      prompt: "أقصر، واحذف الجملة الأخيرة",
+      response: "اكتشف عالمًا من النكهات الفاخرة مع صندوق الشاي المكوّن من 12 نوعًا مختارًا بعناية من أجود المزارع حول العالم. هدية استثنائية تُشعر من يتلقاها بالتقدير الحقيقي.",
+      takeaway: "التكرار بملاحظات قصيرة أسرع بكثير من كتابة برومبت جديد، والنتيجة أدق لأنها مبنية على مسودة حقيقية وليست تخمينًا جديدًا من الصفر.",
+    },
   },
   {
-    badge: "Module 4",
-    title: "Prompts for five everyday task types",
+    n: 4,
+    title: "تحديد الدور والسياق",
     body: `
-      <p>Most everyday AI use falls into five patterns. Learning the shape of each one lets you improvise instead of memorizing exact prompts:</p>
+      <p>أحد أقوى التقنيات هو إعطاء الذكاء الاصطناعي دورًا أو هوية محددة قبل طلب المهمة، لأن ذلك يوجّه أسلوب ومستوى الإجابة بدقة أكبر. بدلًا من "اشرح لي هذا العقد"، جرّب "تصرف كمستشار قانوني يشرح لعميل غير متخصص". الدور لا يغيّر حقائق الإجابة، لكنه يغيّر بشدة نبرتها ومستوى التبسيط والتفاصيل التي يختار تضمينها.</p>
+      <p>القاعدة الذهبية: كن محددًا في الدور كما تكون محددًا في المهمة. "تصرف كخبير" غامض؛ "تصرف كمدير تسويق يخاطب فريقًا مبتدئًا" محدد وفعّال.</p>
+    `,
+    exercise: "اختر مهمة تقوم بها بانتظام واطلبها مرتين: مرة بدون دور محدد، ومرة مع دور واضح. قارن الفرق في النبرة والتفاصيل.",
+    example: {
+      context: "نفس نوع الموقف، لكن تحديد دور واضح يغيّر الأسلوب تمامًا.",
+      prompt: "تصرف كمدرب حياة داعم ومباشر في آن واحد. زميلي في العمل يماطل في مهمة مهمة منذ أسبوعين. كيف أتحدث معه؟",
+      response: "ابدأ بسؤال فضولي لا اتهامي، مثل: \"لاحظت أن المهمة لم تتحرك بعد — هل هناك شيء يعطّلك؟\" هذا يفتح الباب للسبب الحقيقي بدل الدفاع. بعدها، اقترحا معًا أصغر خطوة ملموسة يمكنه إنجازها اليوم، لا الأسبوع القادم. أخيرًا، اتفقا على موعد قصير للمتابعة خلال يومين — المتابعة القريبة تحافظ على الزخم دون أن تبدو كضغط.",
+      takeaway: "لاحظ نبرة الإجابة: عملية، متعاطفة، ومباشرة في آن واحد — نتيجة مباشرة لتحديد الدور بدقة في البرومبت.",
+    },
+  },
+  {
+    n: 5,
+    title: "الشكل والقيود",
+    body: `
+      <p>تحديد شكل الإجابة (نقاط، جدول، عدد كلمات، عدد فقرات) يوفر عليك وقت إعادة التنسيق يدويًا. الذكاء الاصطناعي يستجيب جيدًا لقيود دقيقة مثل "لا يتجاوز 100 كلمة" أو "3 نقاط فقط، كل نقطة سطر واحد" أو "بصيغة جدول من عمودين". كلما كانت القيود أوضح، قلّت الحاجة لتعديل الشكل يدويًا بعد الحصول على الإجابة.</p>
+      <p>نصيحة: إذا كانت الإجابات تأتي دائمًا أطول مما تحتاج، أضف قيدًا صارمًا بالعدد ("بالضبط 3 جمل") بدلًا من طلب مبهم مثل "باختصار".</p>
+    `,
+    exercise: "خذ أي برومبت استخدمته سابقًا وأضف له قيدًا دقيقًا بالشكل (عدد كلمات، عدد نقاط، أو جدول). لاحظ كيف تغيّرت دقة الإجابة.",
+    example: {
+      context: "نفس نوع الطلب، لكن مع قيد شكل دقيق هذه المرة.",
+      prompt: "قارن بين العمل من المنزل والعمل من المكتب في جدول من عمودين فقط، بحد أقصى 4 صفوف.",
+      response: "جدول من عمودين (العمل من المنزل | العمل من المكتب) بأربعة صفوف: مرونة أكبر في الوقت مقابل تواصل مباشر وأسرع مع الفريق · توفير وقت التنقل مقابل فصل أوضح بين العمل والحياة الشخصية · يحتاج انضباطًا ذاتيًا أعلى مقابل وصول أسهل للموارد والاجتماعات العفوية · مناسب للمهام الفردية العميقة مقابل مناسب للمهام التي تحتاج تعاونًا لحظيًا.",
+      takeaway: "تحديد عدد الصفوف والأعمدة بدقة أنتج جدولًا جاهزًا للاستخدام مباشرة، بدل فقرة طويلة تحتاج إعادة صياغة يدوية.",
+    },
+  },
+  {
+    n: 6,
+    title: "برومبتات لخمسة أنواع مهام يومية",
+    body: `
+      <p>معظم استخدامات الذكاء الاصطناعي اليومية تقع ضمن خمسة أنماط. تعلّم شكل كل نمط يتيح لك الارتجال بدلًا من حفظ برومبتات محددة:</p>
       <ul>
-        <li><strong>Rewrite</strong> — "Rewrite this to be [shorter / more formal / friendlier]: [paste]." Always paste the original.</li>
-        <li><strong>Summarize</strong> — "Summarize this into [3 bullets / one paragraph] covering [what to include]: [paste]."</li>
-        <li><strong>Draft</strong> — "Draft a [thing] for [audience] that covers [points], in [tone]."</li>
-        <li><strong>Explain</strong> — "Explain [topic] for someone who knows [X] but not [Y]."</li>
-        <li><strong>Decide</strong> — "I'm choosing between [A] and [B] given [real constraint]. What's the actual trade-off?"</li>
+        <li><strong>إعادة الصياغة</strong> — "أعد صياغة هذا ليكون [أقصر / أكثر رسمية / أكثر ودية]: [الصق النص]." الصق النص الأصلي دائمًا.</li>
+        <li><strong>التلخيص</strong> — "لخّص هذا في [3 نقاط / فقرة واحدة] تغطي [ما يجب تضمينه]: [الصق النص]."</li>
+        <li><strong>كتابة مسودة</strong> — "اكتب مسودة [الشيء] لـ[الجمهور] تغطي [النقاط]، بأسلوب [كذا]."</li>
+        <li><strong>الشرح</strong> — "اشرح [الموضوع] لشخص يعرف [س] لكن لا يعرف [ص]."</li>
+        <li><strong>اتخاذ قرار</strong> — "أختار بين [أ] و[ب] بناءً على [قيد حقيقي]. ما هي المقايضة الفعلية؟"</li>
       </ul>
     `,
-    exercise:
-      "Pick one pattern above you use least. Write one real prompt for it right now, using something from your actual week.",
+    exercise: "اختر النمط الذي تستخدمه أقل من غيره. اكتب برومبتًا حقيقيًا له الآن، باستخدام شيء من أسبوعك الفعلي.",
+    example: {
+      context: "مثال على نمط \"الشرح\" — تحديد ما يعرفه الشخص بالفعل يوجّه عمق الإجابة.",
+      prompt: "اشرح لي مفهوم \"الفائدة المركبة\" لشخص يعرف الفائدة البسيطة لكن لا يعرف الفرق.",
+      response: "الفائدة البسيطة تُحسب فقط على المبلغ الأصلي في كل مرة. أما الفائدة المركبة فتُحسب على المبلغ الأصلي بالإضافة إلى الفوائد المتراكمة من الفترات السابقة — بمعنى أن أموالك تبدأ بتوليد فوائد على الفوائد نفسها، وليس فقط على رأس المال. لهذا، مع مرور الوقت، ينمو المبلغ في الفائدة المركبة بشكل متسارع مقارنة بالفائدة البسيطة، حتى لو كانت النسبة السنوية نفسها.",
+      takeaway: "تحديد \"ماذا يعرف الشخص بالفعل\" يمنع الذكاء الاصطناعي من شرح أساسيات لا تحتاجها أو القفز لتفاصيل متقدمة جدًا.",
+    },
   },
   {
-    badge: "Module 5",
-    title: "Building your own prompt library",
+    n: 7,
+    title: "سلاسل البرومبت: تقسيم المهام الكبيرة",
     body: `
-      <p>The prompts you'll use most are the ones tied to tasks you repeat — weekly status updates, meeting notes, a certain kind of email, onboarding a client. Once you've written a prompt that works well for one of these, save it. Don't rewrite it from memory every time.</p>
-      <p>A simple system: keep a note (or use the prompt pack that comes with this course as a starting point) with one saved prompt per recurring task, each with a placeholder like [paste notes] or [task list] where your specific input goes. Over a few weeks, this becomes a genuinely fast workflow — you're filling in a template, not starting from a blank page.</p>
+      <p>المهام الكبيرة والمركبة (مثل كتابة تقرير كامل، أو التخطيط لحدث) يصعب إنجازها ببرومبت واحد ضخم. بدلًا من ذلك، قسّمها إلى سلسلة من الخطوات الأصغر، حيث تُبنى كل خطوة على نتيجة الخطوة السابقة — وهو ما يُعرف بـ"سلسلة البرومبت".</p>
+      <p>مثال على سلسلة: (1) اطلب أولًا مخططًا أو نقاطًا رئيسية. (2) راجع المخطط وعدّله. (3) اطلب توسيع كل نقطة على حدة. (4) اطلب مراجعة نهائية للأسلوب والتماسك. كل خطوة أبسط وأسهل تقييمًا من طلب النتيجة الكاملة دفعة واحدة.</p>
     `,
-    exercise:
-      "List 3 tasks you do at least weekly. Write (and save) one reusable prompt for each, with a clear placeholder for the part that changes each time.",
+    exercise: "خذ مهمة كبيرة تؤجلها (تقرير، خطة، عرض تقديمي) وقسّمها إلى 3 خطوات متسلسلة كما في المثال، ثم نفّذها خطوة بخطوة مع الذكاء الاصطناعي.",
+    example: {
+      context: "الخطوة الأولى فقط من سلسلة كتابة خطة تسويقية — طلب المخطط قبل التفاصيل.",
+      prompt: "أريد خطة تسويقية لإطلاق منتج جديد. لا تكتب التفاصيل الآن — فقط أعطني مخططًا من 5 أقسام رئيسية بعنوان واحد لكل قسم.",
+      response: "1) تحديد الجمهور المستهدف ونقاط الألم لديه. 2) الرسالة التسويقية الأساسية وموقع المنتج التنافسي. 3) القنوات المناسبة (سوشيال ميديا، إيميل، شراكات). 4) الجدول الزمني للإطلاق مع أهم 3 محطات. 5) مؤشرات النجاح وكيفية قياسها.",
+      takeaway: "الخطوة التالية في السلسلة تكون \"وسّع القسم رقم 1 فقط\" وهكذا — بدلًا من طلب الخطة الكاملة دفعة واحدة والحصول على نتيجة سطحية أو غير منظمة.",
+    },
+  },
+  {
+    n: 8,
+    title: "التحقق وتقييم الإجابات",
+    body: `
+      <p>بما أن مساعد الذكاء الاصطناعي يمكن أن يخطئ بثقة، من المهم تطوير عادة تقييم إجاباته قبل الاعتماد عليها. اسأل نفسك: هل هذه حقيقة يمكن التحقق منها بسهولة؟ هل الرقم أو التاريخ منطقي؟ هل يوجد تناقض داخلي في الإجابة نفسها؟</p>
+      <p>تقنية مفيدة: اطلب من الذكاء الاصطناعي نفسه مراجعة إجابته بسؤال مثل "هل أنت متأكد من هذا الرقم؟ راجع إجابتك." أحيانًا يصحح نفسه، وأحيانًا يؤكد بثقة أكبر — لذا هذه التقنية مفيدة لكنها ليست بديلًا عن التحقق من مصدر موثوق.</p>
+    `,
+    exercise: "خذ إجابة حصلت عليها سابقًا تحتوي على رقم أو حقيقة، واطلب من الذكاء الاصطناعي مراجعتها بنفسه، ثم تحقق منها بنفسك من مصدر مستقل.",
+    example: {
+      context: "مثال على طلب مراجعة ذاتية لإجابة سابقة تحتوي رقمًا.",
+      prompt: "في إجابتك السابقة ذكرت رقمًا لعدد سكان مدينة معينة. راجع هذا الرقم بنفسك — هل أنت متأكد منه، أم قد يكون تقديريًا أو قديمًا؟",
+      response: "بعد المراجعة، الرقم الذي ذكرته هو تقدير تقريبي وقد لا يعكس آخر إحصائية رسمية، لأن أعداد السكان تتغير باستمرار وتُحدّث دوريًا من جهات رسمية. أنصحك بالتحقق من الرقم الدقيق عبر الجهة الإحصائية الرسمية للدولة أو المدينة قبل استخدامه في أي تقرير أو عرض رسمي.",
+      takeaway: "هذا مثال جيد على الشفافية المفيدة — الذكاء الاصطناعي يوضح مستوى ثقته الحقيقي عند سؤاله مباشرة، بدلًا من تكرار الرقم بنفس الثقة الأولى.",
+    },
+  },
+  {
+    n: 9,
+    title: "تجنب الأخطاء الشائعة للمستخدم المتقدم",
+    body: `
+      <p>هذه أخطاء أكثر دقة يقع فيها من تجاوز مرحلة المبتدئين:</p>
+      <ol>
+        <li><strong>نسيان القيود السلبية</strong> — إخبار الذكاء الاصطناعي بما يجب ألا يتضمنه الرد (مثل "دون استخدام مصطلحات تقنية" أو "دون طرح أسئلة إضافية") لا يقل أهمية عن إخباره بما تريده.</li>
+        <li><strong>الاعتماد على برومبت واحد لمهمة معقدة</strong> بدل تقسيمها إلى سلسلة (راجع الوحدة 7).</li>
+        <li><strong>عدم اختبار الحالات الحدّية</strong> — إذا كان البرومبت سيُستخدم بشكل متكرر كقالب، جرّبه على حالة صعبة أو غير عادية قبل اعتماده بشكل دائم.</li>
+        <li><strong>الخلط بين الثقة والدقة</strong> — تعامل مع كل إجابة كمسودة أولى قابلة للمراجعة، مهما بدت نهائية ومتماسكة.</li>
+      </ol>
+    `,
+    exercise: "راجع آخر 3 برومبتات كتبتها. هل أضفت أي قيد سلبي (ما لا تريده)؟ إن لم تفعل، أعد كتابة واحد منها بإضافة قيد سلبي واحد على الأقل.",
+    example: {
+      context: "إضافة قيد سلبي واحد تغيّر جودة الرد بشكل ملحوظ.",
+      prompt: "اشرح لي \"الذكاء الاصطناعي التوليدي\" لمدير غير تقني. لا تستخدم أي مصطلحات برمجية، ولا تطرح عليّ أي سؤال — فقط أعطني الشرح مباشرة.",
+      response: "الذكاء الاصطناعي التوليدي هو نوع من البرامج يتعلم من كميات ضخمة من النصوص والصور والأمثلة، ثم يستخدم ما تعلمه لإنتاج محتوى جديد شبيه — نص، صورة، أو حتى صوت — بناءً على طلبك. تخيله كموظف قرأ ملايين الكتب والتقارير، وأصبح قادرًا على كتابة تقرير جديد بنفس الأسلوب متى طلبت منه ذلك، لكنه أحيانًا يخمّن تفاصيل لم يكن متأكدًا منها تمامًا.",
+      takeaway: "بدون القيد السلبي (\"لا تستخدم مصطلحات برمجية\")، كانت الإجابة الافتراضية ستتضمن على الأرجح كلمات مثل \"نماذج\" أو \"خوارزميات\" أو \"بيانات تدريب\" — مناسبة لجمهور تقني، لكن غير مناسبة هنا.",
+    },
+  },
+  {
+    n: 10,
+    title: "بناء مكتبة برومبتاتك الخاصة",
+    body: `
+      <p>البرومبتات التي ستستخدمها أكثر هي المرتبطة بمهام تتكرر — تحديثات حالة أسبوعية، ملاحظات اجتماعات، نوع معين من الإيميلات، استقبال عميل جديد. بمجرد أن تكتب برومبتًا يعمل جيدًا لإحدى هذه المهام، احفظه. لا تعيد كتابته من الذاكرة في كل مرة.</p>
+      <p>نظام بسيط: احتفظ بملاحظة (أو استخدم حزمة البرومبتات المرفقة على ملتقى كنقطة بداية) تحتوي على برومبت محفوظ واحد لكل مهمة متكررة، مع عنصر نائب واضح مثل [الصق الملاحظات] حيث يذهب مدخلك المحدد. خلال أسابيع قليلة، يصبح هذا سير عمل سريعًا فعلًا — أنت تملأ قالبًا، لا تبدأ من صفحة فارغة.</p>
+    `,
+    exercise: "اذكر 3 مهام تقوم بها أسبوعيًا على الأقل. اكتب (واحفظ) برومبتًا قابلًا لإعادة الاستخدام لكل واحدة، مع عنصر نائب واضح للجزء الذي يتغير في كل مرة.",
+    example: {
+      context: "مثال على برومبت محفوظ وقابل لإعادة الاستخدام أسبوعيًا — فقط النص المُلصق في النهاية يتغيّر.",
+      prompt: "[القالب المحفوظ] لخّص إنجازات هذا الأسبوع من هذه الملاحظات في 3 نقاط، ثم اقترح تحديث حالة جاهز للإرسال لمديري بأسلوب مهني ومباشر: [الصق ملاحظات الأسبوع هنا]",
+      response: "إنجازات الأسبوع: إغلاق ملف العميل الرئيسي، إطلاق النسخة التجريبية من الميزة الجديدة، وحل 4 من أصل 5 مشاكل تقنية مفتوحة. تحديث الحالة المقترح: \"مرحبًا، ملخص سريع لهذا الأسبوع: أغلقنا ملف العميل الرئيسي بنجاح، وأطلقنا النسخة التجريبية في الموعد المحدد. من أصل 5 مشاكل كانت مفتوحة، تم حل 4 والمشكلة المتبقية مجدولة للأسبوع القادم. لا يوجد ما يحتاج تدخلك حاليًا.\"",
+      takeaway: "هذا القالب يوفر عليك 10-15 دقيقة أسبوعيًا لأنك تُغيّر فقط الملاحظات الملصقة في نهايته — بقية البرومبت ثابت ومُختبر مسبقًا.",
+    },
   },
 ];
 
+function conceptPage(m) {
+  return `<div class="page">
+    <span class="module-badge">الوحدة ${m.n}</span>
+    <h2>${m.title}</h2>
+    ${m.body}
+    <div class="exercise"><div class="label">تمرين</div><p style="margin:0">${m.exercise}</p></div>
+  </div>`;
+}
+
+function examplePage(m) {
+  const ex = m.example;
+  return `<div class="page example-page">
+    <div class="eyebrow">الوحدة ${m.n} · مثال عملي</div>
+    <h2>${m.title}</h2>
+    <p>${ex.context}</p>
+    <div class="transcript">
+      <div class="bubble prompt-bubble">
+        <span class="who">البرومبت المُستخدَم</span>
+        <p>${ex.prompt}</p>
+      </div>
+      <div class="bubble response-bubble">
+        <span class="who">نموذج للرد</span>
+        <p>${ex.response}</p>
+      </div>
+    </div>
+    <div class="takeaway"><strong>الخلاصة:</strong> ${ex.takeaway}</div>
+  </div>`;
+}
+
 export function courseHtml() {
-  const pages = modules
+  const toc = modules
     .map(
-      (m) => `<div class="page">
-        <span class="module-badge">${m.badge}</span>
-        <h2>${m.title}</h2>
-        ${m.body}
-        <div class="exercise"><div class="label">Exercise</div><p style="margin:0">${m.exercise}</p></div>
+      (m) => `<div class="toc-item">
+        <span class="toc-num">${m.n}</span>
+        <span class="toc-title">${m.title}</span>
       </div>`
     )
     .join("\n");
 
+  const body = modules.map((m) => conceptPage(m) + examplePage(m)).join("\n");
+
   return `
   <div class="cover">
-    <div class="kicker">Multaqa · Courses</div>
-    <h1>Prompting 101<br/>A Practical Course</h1>
-    <p>Five short modules that take you from "typing questions into a chat box" to prompting deliberately — with an exercise after each one.</p>
+    <div class="kicker">ملتقى · دورات</div>
+    <h1>أساسيات البرومبت<br/>دورة عملية شاملة</h1>
+    <p>10 وحدات، كل واحدة مع شرح المفهوم، مثال عملي كامل (برومبت حقيقي ونموذج رد)، وتمرين تطبيقي — من الأساسيات إلى تقنيات متقدمة كسلاسل البرومبت والتحقق من الإجابات.</p>
     <div class="brand">ملتقى — Multaqa</div>
   </div>
-  ${pages}
+
   <div class="page">
-    <h2>What's next</h2>
-    <p>Once these five modules feel natural, the "30 AI Prompts for Work & Productivity" pack (also available on Multaqa) gives you 30 ready-to-use prompts built on exactly this structure — a good way to keep practicing with real tasks.</p>
-    <div class="footer-note">© Multaqa. For personal use. Please don't resell or redistribute this file.</div>
+    <div class="eyebrow">مقدمة</div>
+    <h2>كيف تستخدم هذه الدورة</h2>
+    <p>هذه الدورة مصممة لتأخذك خطوة بخطوة من مستخدم عرضي لمساعدات الذكاء الاصطناعي إلى مستخدم يستخدمها بوعي وفعالية في عمله وحياته اليومية. كل وحدة تحتوي على ثلاثة أجزاء: شرح المفهوم، مثال عملي كامل (برومبت حقيقي مع نموذج للرد)، وتمرين قصير تطبّقه بنفسك.</p>
+    <p>لا حاجة لخلفية تقنية. الدورة مكتوبة لأي شخص يستخدم الذكاء الاصطناعي في عمله — سواء كنت مبتدئًا تمامًا أو تستخدمه بالفعل لكن تشعر أن نتائجك غير متسقة.</p>
+    <div class="takeaway"><strong>نصيحة:</strong> لا تقرأ الدورة دفعة واحدة. اقرأ وحدة واحدة، جرّب مثالها العملي بنفسك على مهمة حقيقية من يومك، ثم انتقل للتالية.</div>
+  </div>
+
+  <div class="page">
+    <div class="eyebrow">المحتويات</div>
+    <h2>الوحدات العشر</h2>
+    ${toc}
+  </div>
+
+  ${body}
+
+  <div class="page">
+    <h2>ما التالي</h2>
+    <p>بمجرد أن تصبح هذه الوحدات طبيعية بالنسبة لك، حزمة "30 برومبت ذكاء اصطناعي للعمل والإنتاجية" (متوفرة أيضًا على ملتقى) تمنحك 30 برومبتًا جاهزًا مبنيًا على نفس الأسس تمامًا — طريقة جيدة لمواصلة التدرّب بمهام حقيقية من عملك.</p>
+    <div class="footer-note">© ملتقى. للاستخدام الشخصي فقط. يُرجى عدم إعادة بيع أو توزيع هذا الملف.</div>
   </div>
   `;
 }

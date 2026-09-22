@@ -1,4 +1,4 @@
-import { readFileSync, mkdirSync } from "node:fs";
+import { readFileSync, mkdirSync, unlinkSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { chromium } from "playwright";
@@ -12,35 +12,58 @@ const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
 const outDir = path.join(__dirname, "../../content/products");
 mkdirSync(outDir, { recursive: true });
 
-const documents = [
-  { slug: "ai-prompt-pack-productivity", title: "30 AI Prompts for Work & Productivity", html: promptsHtml() },
-  { slug: "beginners-guide-to-ai", title: "The Beginner's Guide to Using AI Every Day", html: guideHtml() },
-  { slug: "prompting-101-course", title: "Prompting 101: A Practical Course", html: courseHtml() },
-  { slug: "date-night-deck", title: "Date Night Deck: 80 Questions & Challenges", html: couplesHtml() },
+// All four products are Arabic-only now. The 3 "page" documents keep the
+// A4 portrait magazine layout (RTL); the couple's game is a landscape
+// slide deck, one question per slide.
+const pageDocuments = [
+  { slug: "ai-prompt-pack-productivity", title: "30 برومبت ذكاء اصطناعي للعمل والإنتاجية", html: promptsHtml() },
+  { slug: "beginners-guide-to-ai", title: "دليل المبتدئين لاستخدام الذكاء الاصطناعي يوميًا", html: guideHtml() },
+  { slug: "prompting-101-course", title: "أساسيات البرومبت: دورة عملية", html: courseHtml() },
 ];
 
-function fullPage(title, bodyHtml) {
+const slideDocuments = [{ slug: "netaarafu-aktar", title: "نتعرف اكثر", html: couplesHtml() }];
+
+// The old bilingual English deck is retired in favor of "netaarafu-aktar".
+const retiredSlug = "date-night-deck";
+const retiredPath = path.join(outDir, `${retiredSlug}.pdf`);
+if (existsSync(retiredPath)) unlinkSync(retiredPath);
+
+function fullPage(title, bodyHtml, bodyClass) {
   return `<!doctype html>
-  <html lang="en">
+  <html lang="ar" dir="rtl">
   <head>
     <meta charset="utf-8" />
     <title>${title}</title>
     <style>${css}</style>
   </head>
-  <body>${bodyHtml}</body>
+  <body class="${bodyClass}">${bodyHtml}</body>
   </html>`;
 }
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
 const page = await browser.newPage();
 
-for (const doc of documents) {
-  const html = fullPage(doc.title, doc.html);
+for (const doc of pageDocuments) {
+  const html = fullPage(doc.title, doc.html, "rtl");
   await page.setContent(html, { waitUntil: "networkidle" });
   const outPath = path.join(outDir, `${doc.slug}.pdf`);
   await page.pdf({
     path: outPath,
     format: "A4",
+    printBackground: true,
+    margin: { top: "0", bottom: "0", left: "0", right: "0" },
+  });
+  console.log(`Wrote ${outPath}`);
+}
+
+for (const doc of slideDocuments) {
+  const html = fullPage(doc.title, doc.html, "");
+  await page.setContent(html, { waitUntil: "networkidle" });
+  const outPath = path.join(outDir, `${doc.slug}.pdf`);
+  await page.pdf({
+    path: outPath,
+    width: "1280px",
+    height: "720px",
     printBackground: true,
     margin: { top: "0", bottom: "0", left: "0", right: "0" },
   });

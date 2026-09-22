@@ -1,80 +1,80 @@
 const sections = [
   {
-    title: "1. What an AI assistant actually is",
+    title: "1. ما هو مساعد الذكاء الاصطناعي فعليًا",
     body: `
-      <p>An AI assistant (like ChatGPT or Claude) is a text-prediction system trained on huge amounts of writing. It doesn't "know" facts the way a database does — it generates the most plausible next words based on your prompt and its training. That single idea explains most of its strengths and weaknesses.</p>
-      <p><strong>What this means in practice:</strong> it's excellent at rephrasing, structuring, summarizing, and drafting — tasks about language. It's less reliable at precise facts, recent events, or math it hasn't "shown its work" on. Treat it like a very well-read, very fast colleague who sometimes misremembers a detail — useful, but worth double-checking on anything that matters.</p>
+      <p>مساعد الذكاء الاصطناعي (مثل ChatGPT أو Claude) هو نظام يتنبأ بالنص، مُدرَّب على كمية هائلة من الكتابة. إنه لا "يعرف" الحقائق كما تفعل قاعدة البيانات — بل يولّد الكلمات التالية الأكثر احتمالًا بناءً على طلبك وبياناته التدريبية. هذه الفكرة الوحيدة تفسر معظم نقاط قوته وضعفه.</p>
+      <p><strong>ماذا يعني هذا عمليًا:</strong> إنه ممتاز في إعادة الصياغة، الهيكلة، التلخيص، وكتابة المسودات — مهام تتعلق باللغة. وهو أقل موثوقية في الحقائق الدقيقة، الأحداث الأخيرة، أو الحسابات التي لم "يُظهر عمله" فيها. تعامل معه كزميل مطّلع جدًا وسريع جدًا، لكنه أحيانًا يخطئ في تذكر تفصيل ما — مفيد جدًا، لكن يستحق التحقق في كل ما يهم.</p>
     `,
   },
   {
-    title: "2. The one habit that changes everything: be specific",
+    title: "2. العادة الوحيدة التي تغيّر كل شيء: كن محددًا",
     body: `
-      <p>The single biggest difference between a useless answer and a great one isn't which AI you use — it's how specific your prompt is.</p>
-      <p><strong>Vague:</strong> "Write me an email about the project."</p>
-      <p><strong>Specific:</strong> "Write a 100-word email to my manager explaining the project is 2 days behind because of a vendor delay, and that I don't need help yet but wanted to flag it early. Keep the tone calm, not apologetic."</p>
-      <p>The second version tells the AI the length, audience, situation, and tone. You'll get something close to usable on the first try — the first version forces you into 3–4 rounds of "no, more like this."</p>
+      <p>الفرق الأكبر بين إجابة عديمة الفائدة وإجابة رائعة ليس أي ذكاء اصطناعي تستخدمه — بل مدى تحديد طلبك.</p>
+      <p><strong>غامض:</strong> "اكتب لي إيميلًا عن المشروع."</p>
+      <p><strong>محدد:</strong> "اكتب إيميلًا من 100 كلمة لمديري أشرح فيه أن المشروع متأخر يومين بسبب تأخير من المورّد، وأنني لا أحتاج مساعدة بعد لكنني أردت الإبلاغ مبكرًا. اجعل الأسلوب هادئًا وليس اعتذاريًا."</p>
+      <p>الصياغة الثانية تخبر الذكاء الاصطناعي بالطول والجمهور والموقف والأسلوب. ستحصل على شيء قريب من الجاهز من أول محاولة — بينما الصياغة الأولى تجبرك على 3-4 جولات من "لا، أريده هكذا."</p>
     `,
   },
   {
-    title: "3. Give it the material, not just the topic",
+    title: "3. أعطه المادة، لا الموضوع فقط",
     body: `
-      <p>If you're editing, summarizing, or replying to something, paste the actual text in. Don't describe it and ask the AI to guess. "Summarize this email thread" plus the pasted thread will always beat "summarize my email thread about the Johnson account" with nothing attached.</p>
-      <p>This sounds obvious written down, but it's the single most common mistake beginners make — describing content instead of providing it.</p>
+      <p>إذا كنت تعدّل، تلخّص، أو ترد على شيء ما، الصق النص الفعلي. لا تصفه واطلب من الذكاء الاصطناعي التخمين. "لخّص سلسلة الإيميلات هذه" مع لصق السلسلة الفعلية سيتفوق دائمًا على "لخّص سلسلة الإيميلات الخاصة بحساب فلان" بدون إرفاق أي شيء.</p>
+      <p>يبدو هذا بديهيًا عند كتابته، لكنه أكثر خطأ شائع يرتكبه المبتدئون — وصف المحتوى بدلًا من توفيره.</p>
     `,
   },
   {
-    title: "4. Iterate — don't restart",
+    title: "4. كرر المحاولة — لا تبدأ من جديد",
     body: `
-      <p>Your first prompt rarely needs to be perfect. Treat the conversation like editing with a colleague: ask for a draft, then give short, direct feedback — "shorter", "less formal", "keep paragraph 2 but rewrite the ending" — instead of writing a new, longer prompt from scratch each time.</p>
-      <p>This is faster and gets better results, because each reply carries the context of everything said before it.</p>
+      <p>لا يحتاج طلبك الأول أن يكون مثاليًا. تعامل مع المحادثة كأنك تحرر مع زميل: اطلب مسودة، ثم أعطِ ملاحظات قصيرة ومباشرة — "أقصر"، "أقل رسمية"، "احتفظ بالفقرة الثانية لكن أعد كتابة النهاية" — بدلًا من كتابة طلب جديد وأطول من الصفر كل مرة.</p>
+      <p>هذا أسرع ويعطي نتائج أفضل، لأن كل جولة ملاحظات تُبنى على كل ما قيل قبلها.</p>
     `,
   },
   {
-    title: "5. Where it shines — everyday use cases",
+    title: "5. أين يتألق — استخدامات يومية",
     body: `
       <ul>
-        <li><strong>Email &amp; messages</strong> — drafting, shortening, adjusting tone, replying to something you're avoiding.</li>
-        <li><strong>Summarizing</strong> — long threads, articles, meeting notes, documents.</li>
-        <li><strong>Planning</strong> — turning a messy list of tasks into a realistic schedule.</li>
-        <li><strong>Learning</strong> — explaining a topic at exactly your level, then quizzing you on it.</li>
-        <li><strong>First drafts</strong> — of anything: a pitch, a plan, a difficult conversation, a checklist.</li>
-        <li><strong>A sounding board</strong> — "play devil's advocate on this plan" or "what am I missing here?"</li>
+        <li><strong>الإيميلات والرسائل</strong> — الصياغة، الاختصار، تعديل الأسلوب، الرد على شيء تتجنبه.</li>
+        <li><strong>التلخيص</strong> — سلاسل طويلة، مقالات، ملاحظات اجتماعات، مستندات.</li>
+        <li><strong>التخطيط</strong> — تحويل قائمة مهام فوضوية إلى جدول واقعي.</li>
+        <li><strong>التعلم</strong> — شرح موضوع بمستواك بالضبط، ثم اختبارك فيه.</li>
+        <li><strong>المسودات الأولى</strong> — لأي شيء: عرض، خطة، محادثة صعبة، قائمة تحقق.</li>
+        <li><strong>رأي ثانٍ</strong> — "كن محامي الشيطان على هذه الخطة" أو "ما الذي أفوته هنا؟"</li>
       </ul>
     `,
   },
   {
-    title: "6. Where to be careful",
+    title: "6. أين يجب الحذر",
     body: `
       <ul>
-        <li><strong>Facts, dates, statistics, citations</strong> — verify anything you'll rely on publicly or professionally.</li>
-        <li><strong>Very recent events</strong> — the model's knowledge has a cutoff; ask it directly if it's unsure, or check yourself.</li>
-        <li><strong>Sensitive or private information</strong> — don't paste passwords, ID numbers, or anything you wouldn't want stored.</li>
-        <li><strong>Anything with legal, medical, or financial consequences</strong> — use it to understand options and draft questions, not as a final authority.</li>
+        <li><strong>الحقائق، التواريخ، الإحصاءات، المصادر</strong> — تحقق من أي شيء ستعتمد عليه علنًا أو مهنيًا.</li>
+        <li><strong>الأحداث الأخيرة جدًا</strong> — معرفة النموذج لها حد زمني؛ اسأله مباشرة إن كان غير متأكد، أو تحقق بنفسك.</li>
+        <li><strong>المعلومات الحساسة أو الخاصة</strong> — لا تلصق كلمات مرور، أرقام هوية، أو أي شيء لا تريد تخزينه.</li>
+        <li><strong>أي شيء له عواقب قانونية أو طبية أو مالية</strong> — استخدمه لفهم الخيارات وصياغة الأسئلة، وليس كمرجع نهائي.</li>
       </ul>
     `,
   },
   {
-    title: "7. Common beginner mistakes",
+    title: "7. الأخطاء الشائعة للمبتدئين",
     body: `
       <ol>
-        <li><strong>Being too polite instead of being clear.</strong> "Could you maybe possibly help me think about..." wastes words the AI doesn't need. Just state what you want.</li>
-        <li><strong>Accepting the first answer.</strong> The real value is in the second and third pass, after you say what's wrong with the first.</li>
-        <li><strong>Not giving constraints.</strong> Length, tone, audience, format — say them upfront and you'll save several rounds of editing.</li>
-        <li><strong>Asking one giant question.</strong> Break a big task ("plan my whole week") into the actual list of inputs (your tasks, your fixed meetings, your energy patterns).</li>
+        <li><strong>التأدب الزائد بدلًا من الوضوح.</strong> "هل يمكن ربما أن تساعدني في التفكير..." يهدر كلمات لا يحتاجها الذكاء الاصطناعي. اذكر ما تريده مباشرة.</li>
+        <li><strong>قبول الإجابة الأولى.</strong> القيمة الحقيقية تكمن في الجولة الثانية والثالثة، بعد أن تقول ما هو خاطئ في الأولى.</li>
+        <li><strong>عدم إعطاء قيود.</strong> الطول، الأسلوب، الجمهور، الشكل — اذكرها مسبقًا وستوفر عدة جولات من التعديل.</li>
+        <li><strong>طرح سؤال ضخم واحد.</strong> قسّم مهمة كبيرة ("خطط أسبوعي بالكامل") إلى المدخلات الفعلية (مهامك، اجتماعاتك الثابتة، مستوى طاقتك).</li>
       </ol>
     `,
   },
   {
-    title: "8. Your first-week checklist",
+    title: "8. قائمة تحقق أسبوعك الأول",
     body: `
       <ul>
-        <li>☐ Rewrite one email you're dreading using the "specific prompt" method from Section 2.</li>
-        <li>☐ Paste in a messy set of notes and ask for a structured summary.</li>
-        <li>☐ Practice iterating: ask for a draft, then give one round of short feedback instead of rewriting your prompt.</li>
-        <li>☐ Use it to explain one thing you've been meaning to learn, at your level.</li>
-        <li>☐ Try the "devil's advocate" prompt on a decision you're currently facing.</li>
+        <li>☐ أعد صياغة إيميل كنت تتجنبه باستخدام طريقة "الطلب المحدد" من القسم 2.</li>
+        <li>☐ الصق ملاحظات فوضوية واطلب ملخصًا منظمًا.</li>
+        <li>☐ تدرّب على التكرار: اطلب مسودة، ثم أعطِ جولة ملاحظات قصيرة بدلًا من إعادة كتابة الطلب.</li>
+        <li>☐ استخدمه لشرح شيء كنت تنوي تعلمه، بمستواك.</li>
+        <li>☐ جرّب طلب "محامي الشيطان" على قرار تواجهه حاليًا.</li>
       </ul>
-      <p>By the end of the week, specific and iterative prompting should start feeling automatic — that's the whole skill.</p>
+      <p>بنهاية الأسبوع، يجب أن تشعر بأن الطلب المحدد والتكراري أصبح أمرًا تلقائيًا — هذه هي المهارة كاملة.</p>
     `,
   },
 ];
@@ -82,20 +82,20 @@ const sections = [
 export function guideHtml() {
   const pages = sections
     .map(
-      (s) => `<div class="page"><div class="eyebrow">The Beginner's Guide</div><h2>${s.title}</h2>${s.body}</div>`
+      (s) => `<div class="page"><div class="eyebrow">دليل المبتدئين</div><h2>${s.title}</h2>${s.body}</div>`
     )
     .join("\n");
 
   return `
   <div class="cover">
-    <div class="kicker">Multaqa · AI Digital Products</div>
-    <h1>The Beginner's Guide<br/>to Using AI Every Day</h1>
-    <p>A short, practical guide to getting real, everyday value out of an AI assistant — no hype, no technical background required.</p>
+    <div class="kicker">ملتقى · منتجات رقمية بالذكاء الاصطناعي</div>
+    <h1>دليل المبتدئين<br/>لاستخدام الذكاء الاصطناعي يوميًا</h1>
+    <p>دليل عملي وقصير للحصول على فائدة حقيقية ويومية من مساعد الذكاء الاصطناعي — بدون مبالغة وبدون الحاجة لخلفية تقنية.</p>
     <div class="brand">ملتقى — Multaqa</div>
   </div>
   ${pages}
   <div class="page">
-    <div class="footer-note">© Multaqa. For personal use. Please don't resell or redistribute this file.</div>
+    <div class="footer-note">© ملتقى. للاستخدام الشخصي فقط. يُرجى عدم إعادة بيع أو توزيع هذا الملف.</div>
   </div>
   `;
 }

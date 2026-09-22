@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getProductBySlug } from "@/lib/data";
 import { getCountry } from "@/lib/country";
+import { coverUrl } from "@/lib/coverUrl";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { formatPrice, priceFor } from "@/lib/price";
 
@@ -22,10 +24,15 @@ export default async function ProductPage({
   const title = locale === "ar" ? product.title_ar : product.title_en;
   const description = locale === "ar" ? product.description_ar : product.description_en;
   const { amount, currency } = priceFor(product, country);
+  const cover = coverUrl(product.cover_image_path);
 
   return (
     <div className="grid gap-10 lg:grid-cols-2">
-      <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-brass/25 to-ink/10" />
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-brass/25 to-ink/10">
+        {cover && (
+          <Image src={cover} alt={title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+        )}
+      </div>
 
       <div className="flex flex-col gap-5">
         <h1 className="text-2xl font-bold">{title}</h1>

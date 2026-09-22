@@ -1,186 +1,155 @@
 const categories = [
   {
-    label: "Writing & Email",
+    label: "الكتابة والإيميل",
     items: [
       {
-        prompt:
-          "Rewrite this email so it sounds more [confident / friendly / concise] while keeping the same information: [paste email]",
-        tip: "Paste your rough draft, not just a topic — the AI edits better than it invents from nothing.",
+        prompt: "أعد صياغة هذا الإيميل ليبدو [أكثر ثقة / ودودًا / مختصرًا] مع الحفاظ على نفس المعلومات: [الصق الإيميل هنا]",
+        tip: "الصق مسودتك الأولية وليس مجرد الموضوع — الذكاء الاصطناعي يعدّل بشكل أفضل مما يبتكر من الصفر.",
       },
       {
-        prompt:
-          "Turn these bullet points into a short, professional email to [recipient/role] asking for [outcome]: [bullets]",
-        tip: "Name the recipient's role (client, manager, vendor) so the tone matches.",
+        prompt: "حوّل هذه النقاط إلى إيميل مهني قصير موجه إلى [اسم المستلم/منصبه] يطلب [النتيجة المطلوبة]: [النقاط]",
+        tip: "اذكر منصب المستلم (عميل، مدير، مورّد) ليتناسب الأسلوب معه.",
       },
       {
-        prompt:
-          "Write 3 subject lines for this email, ranked from most to least direct: [paste email]",
-        tip: "Ask for options, then pick — don't accept the first draft as final.",
+        prompt: "اكتب 3 عناوين لهذا الإيميل، مرتبة من الأكثر مباشرة إلى الأقل: [الصق الإيميل هنا]",
+        tip: "اطلب خيارات متعددة ثم اختر — لا تكتفِ بأول مسودة.",
       },
       {
-        prompt:
-          "I need to say no to this request without sounding harsh. Draft a reply: [paste request]",
-        tip: "Add \"keep it under 80 words\" if you tend to get long, apologetic replies.",
+        prompt: "أحتاج أن أرفض هذا الطلب دون أن يبدو ردي قاسيًا. اكتب لي ردًا: [الصق الطلب]",
+        tip: "أضف \"اجعله أقل من 80 كلمة\" إذا كنت تميل لكتابة ردود طويلة ومعتذرة.",
       },
       {
-        prompt:
-          "Summarize this email thread in 3 bullet points: what happened, what's decided, what's still open. [paste thread]",
-        tip: "Great before a meeting when you've lost track of a long thread.",
+        prompt: "لخّص سلسلة الإيميلات هذه في 3 نقاط: ماذا حدث، ما الذي تم الاتفاق عليه، وما الذي لا يزال مفتوحًا. [الصق السلسلة]",
+        tip: "مفيد جدًا قبل اجتماع عندما تكون قد فقدت متابعة سلسلة طويلة.",
       },
       {
-        prompt:
-          "Proofread this for grammar and clarity only — don't change my tone or word choice: [paste text]",
-        tip: "Say \"don't change my tone\" explicitly, or the AI will smooth out your voice too.",
+        prompt: "دقّق هذا النص من ناحية القواعد والوضوح فقط — لا تغيّر أسلوبي أو اختيار كلماتي: [الصق النص]",
+        tip: "قل \"لا تغيّر أسلوبي\" بوضوح، وإلا سيُعدّل الذكاء الاصطناعي طريقة كتابتك أيضًا.",
       },
     ],
   },
   {
-    label: "Meetings & Planning",
+    label: "الاجتماعات والتخطيط",
     items: [
       {
-        prompt:
-          "Turn these raw meeting notes into a clean summary with: decisions made, action items (with owners), and open questions. [paste notes]",
-        tip: "Even messy, half-sentence notes work — the AI fills in structure, not facts.",
+        prompt: "حوّل ملاحظات هذا الاجتماع الخام إلى ملخص منظم يتضمن: القرارات المتخذة، المهام (مع المسؤول عنها)، والأسئلة المفتوحة. [الصق الملاحظات]",
+        tip: "حتى الملاحظات غير المرتبة وشبه المكتملة تعمل جيدًا — الذكاء الاصطناعي يضيف الهيكل، لا الحقائق.",
       },
       {
-        prompt:
-          "I have these tasks for the week: [list]. Help me group them into a realistic daily plan for Mon–Fri, assuming 6 focused hours a day.",
-        tip: "Mention any fixed meetings/deadlines so the plan works around them.",
+        prompt: "لدي هذه المهام للأسبوع: [القائمة]. ساعدني في تجميعها في خطة يومية واقعية من الأحد إلى الخميس، بافتراض 6 ساعات تركيز يوميًا.",
+        tip: "اذكر أي اجتماعات أو مواعيد نهائية ثابتة حتى تُبنى الخطة حولها.",
       },
       {
-        prompt:
-          "Draft a 30-minute meeting agenda for a call about [topic] with [attendees/roles]. Include time boxes.",
-        tip: "Time-boxing each item is what keeps meetings from running over — always ask for it.",
+        prompt: "اكتب أجندة اجتماع مدته 30 دقيقة حول [الموضوع] مع [الحضور/مناصبهم]. حدد وقتًا لكل بند.",
+        tip: "تحديد وقت لكل بند هو ما يمنع الاجتماعات من التمدد — اطلبه دائمًا.",
       },
       {
-        prompt:
-          "I'm stuck between [option A] and [option B] for [decision]. List the real trade-offs, not generic pros/cons.",
-        tip: "Give the actual constraint (budget, deadline, team size) so the trade-offs are specific to you.",
+        prompt: "أنا متردد بين [الخيار أ] و[الخيار ب] بخصوص [القرار]. اذكر لي المقايضات الحقيقية، وليس عبارات عامة.",
+        tip: "اذكر القيد الفعلي (ميزانية، موعد نهائي، حجم الفريق) لتحصل على مقايضات مخصصة لحالتك.",
       },
       {
-        prompt:
-          "Write a short status update for my manager covering: what I finished, what's in progress, and what I need from them.",
-        tip: "Keep this one as a saved template — reuse it weekly and just swap the details.",
+        prompt: "اكتب تحديث حالة قصير لمديري يشمل: ما أنجزته، ما هو قيد التنفيذ، وما أحتاجه منه.",
+        tip: "احتفظ بهذا كقالب جاهز — استخدمه أسبوعيًا وغيّر التفاصيل فقط.",
       },
     ],
   },
   {
-    label: "Research & Learning",
+    label: "البحث والتعلم",
     items: [
       {
-        prompt:
-          "Explain [topic] like I'm smart but new to this specific field — no oversimplifying, no jargon left unexplained.",
-        tip: "This phrasing avoids both a condescending answer and an overly technical one.",
+        prompt: "اشرح لي [الموضوع] وكأنني شخص ذكي لكن جديد في هذا المجال تحديدًا — بدون تبسيط مبالغ فيه، وبدون مصطلحات غير مشروحة.",
+        tip: "هذه الصياغة تتجنب الرد المتعالي والرد التقني المبالغ فيه في آن واحد.",
       },
       {
-        prompt:
-          "Give me the 5 most important things to understand about [topic] before I start learning it in depth.",
-        tip: "Use this before diving into a course or long article — it gives you a map first.",
+        prompt: "أعطني أهم 5 أشياء يجب فهمها عن [الموضوع] قبل أن أبدأ في تعلمه بعمق.",
+        tip: "استخدم هذا قبل الانخراط في دورة أو مقال طويل — يعطيك خريطة أولية.",
       },
       {
-        prompt:
-          "Compare [tool/method/approach A] vs [B] for someone whose goal is [specific goal]. Skip the neutral \"it depends\" — give a real recommendation.",
-        tip: "State your actual goal and constraints; a generic comparison is far less useful than one for your case.",
+        prompt: "قارن بين [الأداة/الطريقة أ] و[ب] لشخص هدفه [هدف محدد]. لا تكتفِ بعبارة \"الأمر يعتمد\" المحايدة — أعطني توصية حقيقية.",
+        tip: "اذكر هدفك وقيودك الفعلية؛ المقارنة العامة أقل فائدة بكثير من المقارنة المخصصة لحالتك.",
       },
       {
-        prompt:
-          "I just read this. Quiz me with 5 questions to check if I actually understood it: [paste article/notes]",
-        tip: "Answering forces recall — much stickier than re-reading your notes.",
+        prompt: "قرأت هذا للتو. اختبرني بـ 5 أسئلة للتأكد من أنني فهمته فعلًا: [الصق المقال/الملاحظات]",
+        tip: "الإجابة تجبرك على الاسترجاع — وهذا يثبت المعلومة أكثر بكثير من إعادة القراءة.",
       },
       {
-        prompt:
-          "Summarize this in one paragraph for someone with zero background, then in one paragraph for an expert. [paste text]",
-        tip: "Useful when you need to explain the same thing to two very different audiences.",
+        prompt: "لخّص هذا في فقرة واحدة لشخص بلا أي خلفية، ثم في فقرة واحدة لخبير. [الصق النص]",
+        tip: "مفيد عندما تحتاج شرح نفس الشيء لجمهورين مختلفين تمامًا.",
       },
     ],
   },
   {
-    label: "Work Documents",
+    label: "مستندات العمل",
     items: [
       {
-        prompt:
-          "Turn this messy brain-dump into a structured one-page project brief with: goal, scope, out of scope, timeline, owner. [paste notes]",
-        tip: "Works even from voice-to-text notes — don't clean it up yourself first.",
+        prompt: "حوّل هذه الأفكار غير المرتبة إلى موجز مشروع منظم في صفحة واحدة يتضمن: الهدف، النطاق، خارج النطاق، الجدول الزمني، المسؤول. [الصق الملاحظات]",
+        tip: "يعمل حتى مع ملاحظات مُملاة صوتيًا — لا داعي لترتيبها بنفسك أولًا.",
       },
       {
-        prompt:
-          "Write a polite follow-up message for something I sent [X days] ago with no response: [context]",
-        tip: "Specify the relationship (client, colleague, vendor) — tone should differ a lot.",
+        prompt: "اكتب رسالة متابعة مهذبة لشيء أرسلته منذ [عدد الأيام] بدون رد: [السياق]",
+        tip: "حدد نوع العلاقة (عميل، زميل، مورّد) — الأسلوب يختلف كثيرًا.",
       },
       {
-        prompt:
-          "Create a checklist I can reuse every time I [repeated task, e.g. \"onboard a new client\"].",
-        tip: "Ask it to keep each item to one line — checklists fail when items are paragraphs.",
+        prompt: "أنشئ قائمة تحقق يمكنني إعادة استخدامها كل مرة أقوم فيها بـ [مهمة متكررة، مثل \"استقبال عميل جديد\"].",
+        tip: "اطلب أن يبقى كل بند في سطر واحد — قوائم التحقق تفشل عندما تكون البنود فقرات.",
       },
       {
-        prompt:
-          "Simplify this document so someone outside our team could understand it in one read: [paste document]",
-        tip: "Great for anything going to a client, new hire, or another department.",
+        prompt: "بسّط هذا المستند بحيث يفهمه شخص خارج فريقنا من قراءة واحدة: [الصق المستند]",
+        tip: "رائع لأي شيء موجّه لعميل أو موظف جديد أو قسم آخر.",
       },
       {
-        prompt:
-          "Give me 3 versions of this pitch: a 1-sentence version, a 3-sentence version, and a 1-paragraph version. [paste pitch/idea]",
-        tip: "Keep all three — different situations call for different lengths.",
+        prompt: "أعطني 3 نسخ من هذا العرض: نسخة من جملة واحدة، نسخة من 3 جمل، ونسخة من فقرة واحدة. [الصق الفكرة/العرض]",
+        tip: "احتفظ بالنسخ الثلاث — مواقف مختلفة تحتاج أطوالًا مختلفة.",
       },
     ],
   },
   {
-    label: "Problem-Solving",
+    label: "حل المشكلات",
     items: [
       {
-        prompt:
-          "I'm facing this problem: [describe it]. Ask me clarifying questions before suggesting a solution.",
-        tip: "Forcing questions first stops the AI from guessing at context it doesn't have.",
+        prompt: "أواجه هذه المشكلة: [صف المشكلة]. اسألني أسئلة توضيحية قبل أن تقترح حلًا.",
+        tip: "إجبار النموذج على السؤال أولًا يمنعه من تخمين سياق لا يعرفه.",
       },
       {
-        prompt:
-          "Play devil's advocate on this plan and find the 3 weakest points: [paste plan]",
-        tip: "Much more useful than asking \"is this good?\", which tends to get a polite yes.",
+        prompt: "كن محامي الشيطان على هذه الخطة وابحث عن أضعف 3 نقاط فيها: [الصق الخطة]",
+        tip: "أفيد بكثير من سؤال \"هل هذا جيد؟\" الذي غالبًا ما يحصل على إجابة مجاملة.",
       },
       {
-        prompt:
-          "I need to explain a mistake I made to [manager/client] and what I'm doing to fix it. Help me draft this honestly, without over-apologizing.",
-        tip: "Ask for \"no over-apologizing\" explicitly — first drafts tend to grovel.",
+        prompt: "أحتاج أن أشرح خطأً ارتكبته لـ[مديري/عميلي] وما الذي أفعله لإصلاحه. ساعدني في صياغة هذا بصدق، دون اعتذار مبالغ فيه.",
+        tip: "اطلب \"دون اعتذار مبالغ فيه\" بوضوح — المسودات الأولى غالبًا تبالغ في التبرير.",
       },
       {
-        prompt:
-          "Break this big, vague goal into 5 concrete first steps I could start this week: [goal]",
-        tip: "\"This week\" forces genuinely small, doable steps instead of another vague roadmap.",
+        prompt: "قسّم هذا الهدف الكبير والغامض إلى 5 خطوات أولى ملموسة يمكنني البدء بها هذا الأسبوع: [الهدف]",
+        tip: "\"هذا الأسبوع\" تجبر على خطوات صغيرة وقابلة للتنفيذ فعلًا بدلًا من خطة عامة أخرى.",
       },
       {
-        prompt:
-          "Here's my draft reasoning for a decision: [paste reasoning]. Where is the logic weakest?",
-        tip: "Use before a big decision you can't easily undo — cheap second opinion.",
+        prompt: "هذا تفكيري الأولي لقرار معين: [الصق التفكير]. أين المنطق أضعف؟",
+        tip: "استخدمه قبل قرار كبير يصعب التراجع عنه — رأي ثانٍ سريع وبلا تكلفة.",
       },
     ],
   },
   {
-    label: "Personal Productivity",
+    label: "الإنتاجية الشخصية",
     items: [
       {
-        prompt:
-          "Here's my to-do list: [list]. Tell me which 3 items actually matter this week and which are safe to drop or delay.",
-        tip: "Be honest about your real deadline pressure — the AI can't know what's actually urgent otherwise.",
+        prompt: "هذه قائمة مهامي: [القائمة]. أخبرني أي 3 بنود مهمة فعلًا هذا الأسبوع وأيها يمكن تأجيله أو حذفه بأمان.",
+        tip: "كن صريحًا بشأن ضغط المواعيد الحقيقي — الذكاء الاصطناعي لا يمكنه معرفة ما هو عاجل فعلًا بدون ذلك.",
       },
       {
-        prompt:
-          "I keep procrastinating on [task]. Ask me why, then suggest the smallest possible first step.",
-        tip: "\"Smallest possible step\" is the key phrase — it should feel almost too easy to skip.",
+        prompt: "أستمر في تأجيل [المهمة]. اسألني لماذا، ثم اقترح أصغر خطوة أولى ممكنة.",
+        tip: "\"أصغر خطوة ممكنة\" هي العبارة المفتاحية — يجب أن تبدو سهلة جدًا لدرجة يصعب تجاهلها.",
       },
       {
-        prompt:
-          "Turn this vague goal into a SMART goal: [goal]",
-        tip: "Good for personal goals (fitness, saving, learning) as much as work ones.",
+        prompt: "حوّل هذا الهدف الغامض إلى هدف ذكي (SMART): [الهدف]",
+        tip: "مفيد للأهداف الشخصية (لياقة، ادخار، تعلّم) بقدر ما هو مفيد للأهداف المهنية.",
       },
       {
-        prompt:
-          "Help me write a short, kind message declining this invitation/request without over-explaining: [context]",
-        tip: "Ask for \"without over-explaining\" — most first drafts justify too much.",
+        prompt: "ساعدني في كتابة رسالة قصيرة ولطيفة أعتذر بها عن هذه الدعوة/الطلب دون شرح مبالغ فيه: [السياق]",
+        tip: "اطلب \"دون شرح مبالغ فيه\" — معظم المسودات الأولى تبرر أكثر من اللازم.",
       },
       {
-        prompt:
-          "I have 90 minutes free and 3 tasks I could do: [list]. Which should I actually do, and why?",
-        tip: "Give real context (energy level, deadlines) for a genuinely useful answer, not a coin flip.",
+        prompt: "لدي 90 دقيقة فراغ و3 مهام يمكنني القيام بها: [القائمة]. أيها يجب أن أفعل فعلًا، ولماذا؟",
+        tip: "أعطِ سياقًا حقيقيًا (مستوى الطاقة، المواعيد النهائية) للحصول على إجابة مفيدة فعلًا، لا عشوائية.",
       },
     ],
   },
@@ -206,17 +175,17 @@ export function promptsHtml() {
 
   return `
   <div class="cover">
-    <div class="kicker">Multaqa · AI Digital Products</div>
-    <h1>30 AI Prompts<br/>for Work &amp; Productivity</h1>
-    <p>Copy-paste prompts for email, meetings, planning, research, and everyday decisions — each one tested for a specific, common situation, not a generic template.</p>
+    <div class="kicker">ملتقى · منتجات رقمية بالذكاء الاصطناعي</div>
+    <h1>30 برومبت ذكاء اصطناعي<br/>للعمل والإنتاجية</h1>
+    <p>برومبتات جاهزة للنسخ واللصق للإيميلات، الاجتماعات، التخطيط، البحث، والقرارات اليومية — كل واحد مصمم لموقف محدد ومتكرر، وليس قالبًا عامًا.</p>
     <div class="brand">ملتقى — Multaqa</div>
   </div>
   ${sections}
   <div class="page">
-    <h2>How to use this pack</h2>
-    <p>Every prompt has a bracket like <strong>[paste text]</strong> or <strong>[topic]</strong> — replace it with your real content before sending. The more specific your replacement, the better the result.</p>
-    <p>If the first answer isn't quite right, don't start over — reply with what's wrong: "shorter", "less formal", "keep the second paragraph but redo the first". AI assistants are much better at revising than guessing your preferences upfront.</p>
-    <div class="footer-note">© Multaqa. For personal use. Please don't resell or redistribute this file.</div>
+    <h2>كيف تستخدم هذه الحزمة</h2>
+    <p>كل برومبت يحتوي على أقواس مثل <strong>[الصق النص]</strong> أو <strong>[الموضوع]</strong> — استبدلها بمحتواك الفعلي قبل الإرسال. كلما كان الاستبدال أكثر تحديدًا، كانت النتيجة أفضل.</p>
+    <p>إذا لم تكن الإجابة الأولى دقيقة تمامًا، لا تبدأ من جديد — أخبر الذكاء الاصطناعي بما هو خاطئ: "أقصر"، "أقل رسمية"، "احتفظ بالفقرة الثانية لكن أعد كتابة الأولى". مساعدات الذكاء الاصطناعي أفضل بكثير في التعديل منها في تخمين تفضيلاتك من البداية.</p>
+    <div class="footer-note">© ملتقى. للاستخدام الشخصي فقط. يُرجى عدم إعادة بيع أو توزيع هذا الملف.</div>
   </div>
   `;
 }
