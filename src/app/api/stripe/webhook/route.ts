@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { getStripe } from "@/lib/payments/stripe";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
+import { redeemCoupon } from "@/lib/coupons";
 
 export async function POST(request: NextRequest) {
   const signature = request.headers.get("stripe-signature");
@@ -22,7 +23,7 @@ export async function POST(request: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    const { product_id, user_id, country, currency, amount } = session.metadata ?? {};
+    const { product_id, user_id, country, currency, amount, coupon_code } = session.metadata ?? {};
 
     if (product_id && user_id && country && currency && amount) {
       const supabase = createAdminSupabaseClient();
@@ -48,7 +49,13 @@ export async function POST(request: NextRequest) {
           stripe_payment_intent:
             typeof session.payment_intent === "string" ? session.payment_intent : null,
           reviewed_at: new Date().toISOString(),
+          coupon_code: coupon_code ?? null,
         });
+
+        // Only count the redemption once the order actually landed as paid
+        // (this webhook only fires here), and only for a genuinely new
+        // order — a retried event with an existing order must not double-count.
+        if (coupon_code) await redeemCoupon(coupon_code);
       }
     }
   }

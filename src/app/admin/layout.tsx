@@ -30,6 +30,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/products" className="hover:underline">
             Products
           </Link>
+          <Link href="/admin/coupons" className="hover:underline">
+            Coupons
+          </Link>
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>

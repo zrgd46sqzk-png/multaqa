@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import type { CategorySlug } from "@/lib/types";
@@ -5,8 +6,30 @@ import { getCategoryBySlug, getPublishedProducts } from "@/lib/data";
 import { getCountry } from "@/lib/country";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { ProductCard } from "@/components/ProductCard";
+import { SITE_URL } from "@/lib/constants";
 
 const VALID_SLUGS: CategorySlug[] = ["ai_products", "courses", "couple_games"];
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}): Promise<Metadata> {
+  if (!isLocale(params.locale) || !VALID_SLUGS.includes(params.slug as CategorySlug)) return {};
+  const locale = params.locale as Locale;
+  const category = await getCategoryBySlug(params.slug as CategorySlug);
+  if (!category) return {};
+
+  const title = locale === "ar" ? category.name_ar : category.name_en;
+  const url = `${SITE_URL}/${locale}/category/${category.slug}`;
+
+  return {
+    title,
+    alternates: { canonical: url },
+    openGraph: { title, url, siteName: "Multaqa — ملتقى", locale: locale === "ar" ? "ar_AR" : "en_US" },
+    twitter: { card: "summary", title },
+  };
+}
 
 export default async function CategoryPage({
   params,

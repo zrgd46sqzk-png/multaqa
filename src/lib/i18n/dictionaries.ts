@@ -27,6 +27,8 @@ export interface Dictionary {
     priceFrom: string;
     whatYouGet: string;
     instantDownload: string;
+    share: string;
+    shareCopied: string;
   };
   checkout: {
     title: string;
@@ -34,11 +36,18 @@ export interface Dictionary {
     payWithInstapay: string;
     instapayInstructions: string;
     instapayHandle: string;
+    amountToSend: string;
     referenceLabel: string;
     proofLabel: string;
     submitProof: string;
     pendingReview: string;
     needAccount: string;
+    coupon: {
+      label: string;
+      apply: string;
+      applied: string;
+      invalid: string;
+    };
   };
   account: {
     title: string;
@@ -59,6 +68,7 @@ export interface Dictionary {
   };
   footer: {
     rights: string;
+    whatsapp: string;
   };
 }
 
@@ -91,6 +101,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       priceFrom: "Price",
       whatYouGet: "What you get",
       instantDownload: "Instant digital download",
+      share: "Share",
+      shareCopied: "Link copied",
     },
     checkout: {
       title: "Checkout",
@@ -98,11 +110,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       payWithInstapay: "Pay with InstaPay",
       instapayInstructions: "Send the exact amount to the InstaPay handle below, then submit your payment reference and a screenshot for review.",
       instapayHandle: "InstaPay handle",
+      amountToSend: "Amount to send",
       referenceLabel: "InstaPay reference / transaction ID",
       proofLabel: "Upload payment screenshot",
       submitProof: "Submit for review",
       pendingReview: "Your payment is pending review. You'll get access as soon as it's approved (usually within a few hours).",
       needAccount: "Please sign in first so we can attach this order to your account.",
+      coupon: {
+        label: "Discount code",
+        apply: "Apply",
+        applied: "{percent}% discount applied",
+        invalid: "Invalid or expired code",
+      },
     },
     account: {
       title: "My Purchases",
@@ -123,6 +142,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     footer: {
       rights: "All rights reserved.",
+      whatsapp: "Chat with us on WhatsApp",
     },
   },
   ar: {
@@ -153,6 +173,8 @@ export const dictionaries: Record<Locale, Dictionary> = {
       priceFrom: "السعر",
       whatYouGet: "ماذا ستحصل عليه",
       instantDownload: "تحميل رقمي فوري",
+      share: "مشاركة",
+      shareCopied: "تم نسخ الرابط",
     },
     checkout: {
       title: "إتمام الشراء",
@@ -160,11 +182,18 @@ export const dictionaries: Record<Locale, Dictionary> = {
       payWithInstapay: "ادفع عبر إنستاباي",
       instapayInstructions: "أرسل المبلغ بالضبط إلى حساب إنستاباي أدناه، ثم أرسل رقم العملية وصورة من الإيصال للمراجعة.",
       instapayHandle: "حساب إنستاباي",
+      amountToSend: "المبلغ المطلوب إرساله",
       referenceLabel: "رقم عملية إنستاباي",
       proofLabel: "ارفع صورة إثبات الدفع",
       submitProof: "إرسال للمراجعة",
       pendingReview: "طلبك قيد المراجعة. سيتم تفعيل التحميل بعد الموافقة (عادة خلال ساعات قليلة).",
       needAccount: "يرجى تسجيل الدخول أولاً حتى نربط هذا الطلب بحسابك.",
+      coupon: {
+        label: "كود الخصم",
+        apply: "تطبيق",
+        applied: "تم تطبيق خصم {percent}٪",
+        invalid: "الكود غير صالح أو منتهي الصلاحية",
+      },
     },
     account: {
       title: "مشترياتي",
@@ -185,6 +214,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     footer: {
       rights: "جميع الحقوق محفوظة.",
+      whatsapp: "تواصل معنا عبر واتساب",
     },
   },
 };

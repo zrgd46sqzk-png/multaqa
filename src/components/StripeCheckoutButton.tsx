@@ -8,11 +8,13 @@ export function StripeCheckoutButton({
   locale,
   country,
   label,
+  couponCode,
 }: {
   productSlug: string;
   locale: Locale;
   country: CountryCode;
   label: string;
+  couponCode?: string | null;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +26,7 @@ export function StripeCheckoutButton({
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productSlug, locale, country }),
+        body: JSON.stringify({ productSlug, locale, country, couponCode: couponCode || undefined }),
       });
       const data = await res.json();
       if (!res.ok || !data.url) {

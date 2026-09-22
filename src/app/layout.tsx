@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/constants";
+import { Analytics } from "@/components/Analytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-cairo" });
 
 export const metadata: Metadata = {
-  title: "Multaqa — ملتقى",
+  metadataBase: new URL(SITE_URL),
+  title: { default: "Multaqa — ملتقى", template: "%s — Multaqa" },
   description: "Everything, in one place.",
 };
 
@@ -16,7 +19,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${cairo.variable}`}>
-      <body className="min-h-screen bg-sand font-sans text-ink antialiased">{children}</body>
+      <body className="min-h-screen bg-sand font-sans text-ink antialiased">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

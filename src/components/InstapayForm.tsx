@@ -2,9 +2,24 @@
 
 import { useState, type FormEvent } from "react";
 import { INSTAPAY_HANDLE } from "@/lib/constants";
+import { trackLead } from "@/lib/analytics";
+import { formatPrice } from "@/lib/price";
+import type { Locale } from "@/lib/i18n/config";
 import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-export function InstapayForm({ productSlug, dict }: { productSlug: string; dict: Dictionary }) {
+export function InstapayForm({
+  productSlug,
+  dict,
+  locale,
+  price,
+  couponCode,
+}: {
+  productSlug: string;
+  dict: Dictionary;
+  locale: Locale;
+  price: { amount: number; currency: "AED" | "EGP" };
+  couponCode?: string | null;
+}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -17,11 +32,13 @@ export function InstapayForm({ productSlug, dict }: { productSlug: string; dict:
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.set("productSlug", productSlug);
+    if (couponCode) formData.set("couponCode", couponCode);
 
     try {
       const res = await fetch("/api/instapay/submit", { method: "POST", body: formData });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Submission failed");
+      trackLead({ value: price.amount, currency: price.currency });
       setSubmitted(true);
     } catch (err) {
       setError((err as Error).message);
@@ -45,6 +62,8 @@ export function InstapayForm({ productSlug, dict }: { productSlug: string; dict:
       <div className="rounded-xl bg-sand p-4 text-center">
         <p className="text-xs uppercase tracking-wide text-ink/50">{dict.checkout.instapayHandle}</p>
         <p className="text-lg font-semibold text-brassDark">{INSTAPAY_HANDLE}</p>
+        <p className="mt-2 text-xs uppercase tracking-wide text-ink/50">{dict.checkout.amountToSend}</p>
+        <p className="text-lg font-semibold text-brassDark">{formatPrice(price.amount, price.currency, locale)}</p>
       </div>
 
       <label className="flex flex-col gap-1 text-sm">

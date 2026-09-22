@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { getProductBySlug } from "@/lib/data";
@@ -7,6 +8,44 @@ import { getCountry } from "@/lib/country";
 import { coverUrl } from "@/lib/coverUrl";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { formatPrice, priceFor } from "@/lib/price";
+import { SITE_URL } from "@/lib/constants";
+import { ShareButton } from "@/components/ShareButton";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}): Promise<Metadata> {
+  if (!isLocale(params.locale)) return {};
+  const locale = params.locale as Locale;
+  const product = await getProductBySlug(params.slug);
+  if (!product) return {};
+
+  const title = locale === "ar" ? product.title_ar : product.title_en;
+  const description = locale === "ar" ? product.description_ar : product.description_en;
+  const cover = coverUrl(product.cover_image_path);
+  const url = `${SITE_URL}/${locale}/product/${product.slug}`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: "Multaqa — ملتقى",
+      locale: locale === "ar" ? "ar_AR" : "en_US",
+      images: cover ? [{ url: cover, alt: title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: cover ? [cover] : undefined,
+    },
+  };
+}
 
 export default async function ProductPage({
   params,
@@ -38,9 +77,12 @@ export default async function ProductPage({
         <h1 className="text-2xl font-bold">{title}</h1>
         <p className="whitespace-pre-line text-ink/75">{description}</p>
 
-        <div className="flex items-center gap-2 text-sm text-ink/60">
-          <span className="inline-block h-2 w-2 rounded-full bg-brass" />
-          {dict.product.instantDownload}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-sm text-ink/60">
+            <span className="inline-block h-2 w-2 rounded-full bg-brass" />
+            {dict.product.instantDownload}
+          </div>
+          <ShareButton title={title} url={`${SITE_URL}/${locale}/product/${product.slug}`} label={dict.product.share} copiedLabel={dict.product.shareCopied} />
         </div>
 
         <div className="mt-2 rounded-2xl border border-line bg-white p-6">

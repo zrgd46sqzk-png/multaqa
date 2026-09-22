@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { TrackPurchase } from "@/components/TrackPurchase";
 
 export default async function CheckoutSuccessPage({
   params,
@@ -18,7 +19,7 @@ export default async function CheckoutSuccessPage({
     ? (
         await supabase
           .from("orders")
-          .select("id, status")
+          .select("id, status, amount, currency")
           .eq("stripe_session_id", searchParams.session_id)
           .maybeSingle()
       ).data
@@ -28,6 +29,7 @@ export default async function CheckoutSuccessPage({
 
   return (
     <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-2xl border border-line bg-white p-8 text-center">
+      {ready && order && <TrackPurchase orderId={order.id} value={Number(order.amount)} currency={order.currency} />}
       <h1 className="text-2xl font-bold text-brassDark">
         {ready ? (locale === "ar" ? "تم الدفع بنجاح" : "Payment successful") : (locale === "ar" ? "جارٍ التأكيد…" : "Confirming your payment…")}
       </h1>

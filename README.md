@@ -12,15 +12,18 @@ steps below in order; the app won't run without them.
 ## 1. Create a Supabase project
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In the SQL editor, run the contents of `supabase/migrations/0001_init.sql`. This creates
-   all tables, Row Level Security policies, and the three storage buckets
-   (`product-files`, `payment-proofs` — both private; `product-covers` — public). Then run
-   `supabase/migrations/0002_arab_countries.sql`, which widens `orders.country` from just
-   `AE`/`EG` to the full Arab League list.
+2. In the SQL editor, run these migrations **in order**:
+   - `supabase/migrations/0001_init.sql` — all tables, Row Level Security policies, and
+     the three storage buckets (`product-files`, `payment-proofs` — both private;
+     `product-covers` — public).
+   - `supabase/migrations/0002_arab_countries.sql` — widens `orders.country` from just
+     `AE`/`EG` to the full Arab League list.
+   - `supabase/migrations/0003_coupons.sql` — adds the `coupons` table and an
+     `orders.coupon_code` column (see "How coupon codes work" below).
 3. In **Authentication → URL Configuration**, add your site URL and
    `<site-url>/auth/callback` as a redirect URL (also add `http://localhost:3000/auth/callback`
-   for local dev). Sign-in uses passwordless magic links, so no extra auth provider setup
-   is needed.
+   for local dev). Sign-in uses email + password (Supabase's built-in auth), so no extra
+   provider setup is needed.
 4. Copy **Project URL**, **anon public key**, and **service_role key** from
    Project Settings → API.
 
@@ -38,6 +41,15 @@ Copy `.env.example` to `.env.local` and fill in:
   checkout. **This flow is manual by design**: there is no public InstaPay merchant API,
   so buyers pay this handle directly and upload a screenshot + reference for an admin to
   approve in `/admin/orders`.
+- `NEXT_PUBLIC_SITE_URL` — the deployed domain, used to build absolute URLs for Open
+  Graph tags and `sitemap.xml`. Defaults to `https://multaqa-ruddy.vercel.app` if unset.
+- `NEXT_PUBLIC_WHATSAPP_NUMBER` (optional) — shows a WhatsApp contact link in the footer
+  when set (digits only, with country code, e.g. `971501234567`); hidden entirely if blank.
+- `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_TIKTOK_PIXEL_ID`
+  (all optional) — Google Analytics 4, Meta Pixel, and TikTok Pixel. Each pixel's script
+  only loads once its ID is set (`src/components/Analytics.tsx`); a `purchase` event
+  fires on the Stripe success page and a `lead` event on InstaPay submission
+  (`src/lib/analytics.ts`).
 
 ## 3. Install, seed, and run
 
@@ -89,6 +101,26 @@ Supabase's redirect list.
 
 Downloads are never public files — `/api/download/[orderId]` checks the order belongs to
 the signed-in buyer and is `paid`, then issues a 10-minute signed Supabase Storage URL.
+
+## How coupon codes work
+
+Create/disable percent-off codes at `/admin/coupons`. A buyer enters a code at checkout
+(`src/components/CheckoutActions.tsx`), which calls `/api/coupons/validate` to preview
+the discounted price before committing — this matters most for InstaPay, where the
+buyer needs to know the exact amount to manually transfer.
+
+The code is **re-validated server-side** on actual submission (`src/lib/coupons.ts`,
+consulted by both `src/app/api/stripe/checkout/route.ts` and
+`src/app/api/instapay/submit/route.ts`) — the client-side preview is never trusted for
+the real charge. Redemption counts increment on Stripe's `checkout.session.completed`
+webhook, and at submission time for InstaPay (not at admin approval — a small share of
+submitted-but-later-rejected InstaPay orders will still count as redeemed, which is
+acceptable slack for a launch-discount mechanism).
+
+There is deliberately no public read access to the `coupons` table: the Supabase anon
+key is public, and a public "active coupons" policy would let anyone list every code
+directly from Supabase's REST API. Lookups only happen server-side via the service-role
+client.
 
 ## Known items intentionally out of scope for v1
 

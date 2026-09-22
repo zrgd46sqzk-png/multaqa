@@ -3,10 +3,9 @@ import { isLocale, paymentMethodFor, type Locale } from "@/lib/i18n/config";
 import { getProductBySlug } from "@/lib/data";
 import { getCountry } from "@/lib/country";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { formatPrice, priceFor } from "@/lib/price";
+import { priceFor } from "@/lib/price";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
-import { StripeCheckoutButton } from "@/components/StripeCheckoutButton";
-import { InstapayForm } from "@/components/InstapayForm";
+import { CheckoutActions } from "@/components/CheckoutActions";
 
 export default async function CheckoutPage({
   params,
@@ -30,27 +29,21 @@ export default async function CheckoutPage({
   }
 
   const title = locale === "ar" ? product.title_ar : product.title_en;
-  const { amount, currency } = priceFor(product, country);
+  const basePrice = priceFor(product, country);
 
   return (
     <div className="mx-auto flex max-w-md flex-col gap-6">
       <h1 className="text-2xl font-bold">{dict.checkout.title}</h1>
 
-      <div className="rounded-2xl border border-line bg-white p-5">
-        <p className="font-medium">{title}</p>
-        <p className="mt-1 text-brassDark font-semibold">{formatPrice(amount, currency, locale)}</p>
-      </div>
-
-      {paymentMethodFor(country) === "stripe" ? (
-        <StripeCheckoutButton
-          productSlug={product.slug}
-          locale={locale}
-          country={country}
-          label={dict.checkout.payWithCard}
-        />
-      ) : (
-        <InstapayForm productSlug={product.slug} dict={dict} />
-      )}
+      <CheckoutActions
+        productSlug={product.slug}
+        locale={locale}
+        country={country}
+        dict={dict}
+        title={title}
+        basePrice={basePrice}
+        paymentMethod={paymentMethodFor(country)}
+      />
     </div>
   );
 }
