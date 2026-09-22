@@ -2,68 +2,49 @@ import { readFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { chromium } from "playwright";
+import { promptsHtml } from "./content/prompts.mjs";
+import { guideHtml } from "./content/guide.mjs";
+import { courseHtml } from "./content/course.mjs";
+import { couplesHtml } from "./content/couples.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
 const outDir = path.join(__dirname, "../../content/covers");
 mkdirSync(outDir, { recursive: true });
 
-const covers = [
-  {
-    slug: "ai-prompt-pack-productivity",
-    rose: false,
-    kicker: "ملتقى · منتجات رقمية بالذكاء الاصطناعي",
-    title: "30 برومبت ذكاء اصطناعي<br/>للعمل والإنتاجية",
-    sub: "برومبتات جاهزة للنسخ واللصق للإيميلات، الاجتماعات، التخطيط والبحث.",
-  },
-  {
-    slug: "beginners-guide-to-ai",
-    rose: false,
-    kicker: "ملتقى · منتجات رقمية بالذكاء الاصطناعي",
-    title: "دليل المبتدئين<br/>لاستخدام الذكاء الاصطناعي يوميًا",
-    sub: "دليل عملي وقصير للحصول على فائدة حقيقية ويومية من الذكاء الاصطناعي.",
-  },
-  {
-    slug: "prompting-101-course",
-    rose: false,
-    kicker: "ملتقى · دورات",
-    title: "أساسيات البرومبت<br/>دورة عملية شاملة",
-    sub: "10 وحدات مع أمثلة عملية كاملة وتمارين — أكثر من 20 صفحة.",
-  },
-  {
-    slug: "netaarafu-aktar",
-    rose: true,
-    kicker: "ملتقى · ألعاب للأزواج",
-    title: "نتعرف اكثر",
-    sub: "40 سؤالًا لتقربكما من بعض أكثر، سؤال واحد في كل شريحة.",
-  },
+// These covers are literal screenshots of each file's actual first
+// page/slide (same markup used inside the real PDF) — not a separate
+// redesign. "page" documents are portrait A4 covers; "slide" is the
+// landscape 16:9 first slide of the game deck.
+const items = [
+  { slug: "ai-prompt-pack-productivity", type: "page", html: promptsHtml() },
+  { slug: "beginners-guide-to-ai", type: "page", html: guideHtml() },
+  { slug: "prompting-101-course", type: "page", html: courseHtml() },
+  { slug: "netaarafu-aktar", type: "slide", html: couplesHtml() },
 ];
 
-function thumbPage(c) {
-  const cls = c.rose ? "thumb thumb-rose" : "thumb";
+function fullPage(bodyHtml, bodyClass) {
   return `<!doctype html>
   <html lang="ar" dir="rtl">
   <head><meta charset="utf-8" /><style>${css}</style></head>
-  <body class="rtl" style="margin:0">
-    <div class="${cls}">
-      <div class="thumb-frame"></div>
-      <div class="kicker">${c.kicker}</div>
-      <h1>${c.title}</h1>
-      <p>${c.sub}</p>
-      <div class="brand">ملتقى — Multaqa</div>
-    </div>
-  </body>
+  <body class="${bodyClass}" style="margin:0">${bodyHtml}</body>
   </html>`;
 }
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
-const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
 
-for (const c of covers) {
-  await page.setContent(thumbPage(c), { waitUntil: "networkidle" });
-  const outPath = path.join(outDir, `${c.slug}.jpg`);
-  await page.screenshot({ path: outPath, type: "jpeg", quality: 90 });
-  console.log(`Wrote ${outPath}`);
+for (const item of items) {
+  const viewport =
+    item.type === "slide" ? { width: 1280, height: 720 } : { width: 1240, height: 1754 };
+  const page = await browser.newPage({ viewport });
+  const html = fullPage(item.html, item.type === "page" ? "rtl" : "");
+  await page.setContent(html, { waitUntil: "networkidle" });
+  const selector = item.type === "slide" ? ".slide" : ".cover";
+  const el = await page.$(selector);
+  const outPath = path.join(outDir, `${item.slug}.jpg`);
+  await el.screenshot({ path: outPath, type: "jpeg", quality: 92 });
+  console.log(`Wrote ${outPath} (${item.type})`);
+  await page.close();
 }
 
 await browser.close();

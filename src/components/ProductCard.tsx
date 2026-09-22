@@ -24,14 +24,14 @@ export function ProductCard({
       href={`/${locale}/product/${product.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white transition hover:-translate-y-0.5 hover:shadow-lg"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-brass/25 to-ink/10">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink">
         {cover && (
           <Image
             src={cover}
             alt={title}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover"
+            className="object-contain"
           />
         )}
       </div>

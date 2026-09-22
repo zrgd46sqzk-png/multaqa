@@ -28,9 +28,9 @@ export default async function ProductPage({
 
   return (
     <div className="grid gap-10 lg:grid-cols-2">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-gradient-to-br from-brass/25 to-ink/10">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-ink">
         {cover && (
-          <Image src={cover} alt={title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+          <Image src={cover} alt={title} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-contain" />
         )}
       </div>
 
