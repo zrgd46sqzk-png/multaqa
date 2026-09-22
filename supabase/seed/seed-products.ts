@@ -28,6 +28,15 @@ const supabase = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, {
 const PRODUCTS_DIR = path.join(__dirname, "../../content/products");
 const COVERS_DIR = path.join(__dirname, "../../content/covers");
 
+// Standard prices. AI Digital Products and Courses are unified at one
+// price point (set by the store owner); Couple Games have their own
+// separate standard. New products should default to these unless told
+// otherwise — don't invent one-off prices.
+const AI_PRICE_AED = 32;
+const AI_PRICE_EGP = 450;
+const GAME_PRICE_AED = 24.99;
+const GAME_PRICE_EGP = 351;
+
 // All product names/descriptions are Arabic-only, in both the _en and _ar
 // columns — the site UI (nav, buttons) stays bilingual, but the products
 // themselves are an Arabic-only catalog.
@@ -40,8 +49,8 @@ const catalog = [
     title: "30 برومبت ذكاء اصطناعي للعمل والإنتاجية",
     description:
       "حزمة من 30 برومبت جاهز للنسخ واللصق لكتابة الإيميلات، تلخيص الاجتماعات، التخطيط، والبحث اليومي. كل برومبت مصمم لموقف محدد ومتكرر يواجهه أي شخص في عمله، مع نصيحة عملية لكل واحد لتحصل على أفضل نتيجة من أول محاولة.",
-    price_aed: 15,
-    price_egp: 150,
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
   },
   {
     slug: "beginners-guide-to-ai",
@@ -51,8 +60,8 @@ const catalog = [
     title: "دليل المبتدئين لاستخدام الذكاء الاصطناعي يوميًا",
     description:
       "دليل عملي من 8 أقسام يشرح كيف تستخدم مساعد الذكاء الاصطناعي في حياتك اليومية بثقة — من فهم كيف يعمل فعليًا، إلى العادات التي تصنع فرقًا حقيقيًا في جودة إجاباته، وصولًا إلى قائمة تحقق عملية لأسبوعك الأول.",
-    price_aed: 20,
-    price_egp: 200,
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
   },
   {
     slug: "prompting-101-course",
@@ -62,8 +71,8 @@ const catalog = [
     title: "أساسيات البرومبت: دورة عملية شاملة",
     description:
       "دورة شاملة من 10 وحدات (أكثر من 24 صفحة) تأخذك من الأساسيات إلى تقنيات متقدمة كسلاسل البرومبت وتقييم الإجابات. كل وحدة تتضمن شرحًا مفصلًا، مثالًا عمليًا كاملًا ببرومبت حقيقي ونموذج رد، وتمرينًا تطبيقيًا لترسيخ ما تعلمته.",
-    price_aed: 32,
-    price_egp: 450,
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
   },
   {
     slug: "professional-visual-prompts",
@@ -73,8 +82,8 @@ const catalog = [
     title: "برومبتات احترافية لتوليد وتعديل الصور والفيديو",
     description:
       "أكثر من 30 برومبتًا بمواصفات استوديو حقيقية — إضاءة، عدسات، تدرجات لونية — لتوليد وتعديل الصور والفيديو بجودة استوديوهات الإنتاج. مقسّمة على 6 محاور: تصوير المنتجات، البورتريه والأزياء، المشاهد السينمائية، تعديل الصور، وتوليد وتحرير الفيديو.",
-    price_aed: 25,
-    price_egp: 250,
+    price_aed: AI_PRICE_AED,
+    price_egp: AI_PRICE_EGP,
   },
   {
     slug: "netaarafu-aktar",
@@ -84,8 +93,8 @@ const catalog = [
     title: "نتعرف اكثر",
     description:
       "40 سؤالًا مصممة لتقرّب بينكما أكثر — من ذكريات البدايات إلى الأحلام المشتركة. كل سؤال في شريحة واحدة بتصميم رومانسي أنيق، جاهزة للعرض على الهاتف أو الكمبيوتر في ليلة هادئة معًا.",
-    price_aed: 24.99,
-    price_egp: 351,
+    price_aed: GAME_PRICE_AED,
+    price_egp: GAME_PRICE_EGP,
   },
 ];
 
