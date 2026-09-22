@@ -18,21 +18,21 @@ const INK = "0x14110F";
 
 // Ordered story: intro -> live homepage -> AI products -> courses -> couple games -> closing
 const shots = [
-  { file: path.join(framesDir, "00-intro.jpg"), dur: 1.2 },
-  { file: path.join(framesDir, "01-home.jpg"), dur: 0.9 },
-  { file: path.join(coversDir, "ai-prompt-pack-productivity.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "beginners-guide-to-ai.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "prompting-101-course.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "professional-visual-prompts.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "ai-marketing-course.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "freelancing-course.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "ai-ecommerce-course.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "ai-productivity-course.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "netaarafu-aktar.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "jaraa-wa-sarahah.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "kasr-al-rotine.jpg"), dur: 0.55 },
-  { file: path.join(coversDir, "awal-maweed.jpg"), dur: 0.55 },
-  { file: path.join(framesDir, "99-closing.jpg"), dur: 1.6 },
+  { file: path.join(framesDir, "00-intro.jpg"), dur: 2.4 },
+  { file: path.join(framesDir, "01-home.jpg"), dur: 1.8 },
+  { file: path.join(coversDir, "ai-prompt-pack-productivity.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "beginners-guide-to-ai.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "prompting-101-course.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "professional-visual-prompts.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "ai-marketing-course.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "freelancing-course.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "ai-ecommerce-course.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "ai-productivity-course.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "netaarafu-aktar.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "jaraa-wa-sarahah.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "kasr-al-rotine.jpg"), dur: 2.1 },
+  { file: path.join(coversDir, "awal-maweed.jpg"), dur: 2.1 },
+  { file: path.join(framesDir, "99-closing.jpg"), dur: 2.8 },
 ];
 
 for (const s of shots) {
@@ -47,11 +47,15 @@ for (const s of shots) {
 const filterParts = [];
 shots.forEach((s, i) => {
   const frames = Math.round(s.dur * FPS);
-  // alternate a slow push-in / push-out Ken Burns for visual variety
+  // Ken Burns push over the whole clip: rate is sized to this clip's own
+  // frame count so the zoom keeps moving right up to the last frame
+  // instead of hitting a cap early and holding static.
+  const zoomTarget = 1.12;
+  const rate = ((zoomTarget - 1) / Math.max(frames - 1, 1)).toFixed(6);
   const zoomExpr =
     i % 2 === 0
-      ? `min(zoom+0.0030,1.12)`
-      : `if(eq(on,1),1.12,max(zoom-0.0030,1.00))`;
+      ? `min(zoom+${rate},${zoomTarget})`
+      : `if(eq(on,1),${zoomTarget},max(zoom-${rate},1.00))`;
   filterParts.push(
     `[${i}:v]scale=${W}:${H}:force_original_aspect_ratio=decrease,` +
       `pad=${W}:${H}:(ow-iw)/2:(oh-ih)/2:color=${INK},setsar=1,` +
