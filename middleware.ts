@@ -1,11 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { defaultLocale, isLocale, locales } from "@/lib/i18n/config";
-
-function pickLocaleFromHeader(header: string | null): string {
-  if (!header) return defaultLocale;
-  const preferred = header.split(",")[0]?.split("-")[0]?.trim().toLowerCase();
-  return preferred && isLocale(preferred) ? preferred : defaultLocale;
-}
+import { defaultLocale, locales } from "@/lib/i18n/config";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -22,9 +16,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const locale = pickLocaleFromHeader(request.headers.get("accept-language"));
+  // The catalog is Arabic-only content, so default every fresh visit to
+  // Arabic rather than guessing from Accept-Language — English chrome
+  // wrapped around all-Arabic products was inconsistent. Visitors can
+  // still switch to EN manually via the locale switcher.
   const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname}`;
+  url.pathname = `/${defaultLocale}${pathname}`;
   return NextResponse.redirect(url);
 }
 
