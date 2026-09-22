@@ -366,14 +366,40 @@ li { margin-bottom: 6px; }
 .slide:last-child { page-break-after: auto; }
 
 .slide-bg {
+  --accent: var(--rose-gold);
+  --accent-line: var(--rose-line);
   background: radial-gradient(circle at 50% 18%, var(--rose-mid) 0%, var(--rose-deep) 62%, #430f21 100%);
   color: var(--rose-cream);
+}
+
+/* Bold Truth-or-Dare theme: deep crimson/black, amber accent */
+.slide-bg-dare {
+  --accent: #f0a63c;
+  --accent-line: #e0a4a4;
+  background: radial-gradient(circle at 50% 15%, #6e0f16 0%, #350407 65%, #150102 100%);
+  color: #f7e9df;
+}
+
+/* Warm "break the routine" theme for married/long-term couples: copper */
+.slide-bg-routine {
+  --accent: #e8b165;
+  --accent-line: #d9b48e;
+  background: radial-gradient(circle at 50% 18%, #7a3d1e 0%, #4a2210 65%, #221008 100%);
+  color: #f5e6d8;
+}
+
+/* Light, playful "first date" theme: coral/peach */
+.slide-bg-firstdate {
+  --accent: #8a2e17;
+  --accent-line: #5c2410;
+  background: radial-gradient(circle at 50% 15%, #f3a583 0%, #e77e58 60%, #d9603e 100%);
+  color: #3a1408;
 }
 
 .slide-frame {
   position: absolute;
   inset: 26px;
-  border: 1.5px solid rgba(217, 168, 105, 0.55);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent);
   border-radius: 18px;
   pointer-events: none;
 }
@@ -384,20 +410,20 @@ li { margin-bottom: 6px; }
   position: absolute;
   width: 34px;
   height: 34px;
-  border: 2px solid var(--rose-gold);
+  border: 2px solid var(--accent);
 }
 .slide-frame::before { top: -2px; right: -2px; border-bottom: none; border-left: none; }
 .slide-frame::after { bottom: -2px; left: -2px; border-top: none; border-right: none; }
 
 .slide-heart {
   font-size: 26px;
-  color: var(--rose-gold);
+  color: var(--accent);
   margin-bottom: 22px;
   letter-spacing: 10px;
 }
 
 .slide-kicker {
-  color: var(--rose-gold);
+  color: var(--accent);
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.12em;
@@ -411,10 +437,11 @@ li { margin-bottom: 6px; }
   margin: 0 0 22px;
   color: #fff;
 }
+.slide-bg-firstdate .slide-cover-title { color: #2a0d02; }
 
 .slide-cover-sub {
   font-size: 19px;
-  color: var(--rose-line);
+  color: var(--accent-line);
   max-width: 820px;
   line-height: 1.7;
 }
@@ -427,22 +454,35 @@ li { margin-bottom: 6px; }
   padding: 0 40px;
   color: #fff;
 }
+.slide-bg-firstdate .slide-question { color: #2a0d02; }
 
 .slide-number {
   position: absolute;
   bottom: 46px;
   font-size: 15px;
   font-weight: 700;
-  color: var(--rose-gold);
+  color: var(--accent);
   letter-spacing: 0.08em;
   direction: ltr;
 }
+
+.slide-type-badge {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.slide-type-badge.truth { background: rgba(240, 166, 60, 0.15); color: var(--accent); border: 1.5px solid var(--accent); }
+.slide-type-badge.dare { background: var(--accent); color: #2a0503; }
 
 .slide-brand {
   position: absolute;
   top: 46px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--rose-gold);
+  color: var(--accent);
   letter-spacing: 0.1em;
 }

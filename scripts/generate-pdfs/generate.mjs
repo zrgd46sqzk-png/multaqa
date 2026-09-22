@@ -7,6 +7,9 @@ import { guideHtml } from "./content/guide.mjs";
 import { courseHtml } from "./content/course.mjs";
 import { couplesHtml } from "./content/couples.mjs";
 import { visualPromptsHtml } from "./content/visualPrompts.mjs";
+import { dareAndHonestyHtml } from "./content/dareAndHonesty.mjs";
+import { breakRoutineHtml } from "./content/breakRoutine.mjs";
+import { firstDateHtml } from "./content/firstDate.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -27,7 +30,12 @@ const pageDocuments = [
   },
 ];
 
-const slideDocuments = [{ slug: "netaarafu-aktar", title: "نتعرف اكثر", html: couplesHtml() }];
+const slideDocuments = [
+  { slug: "netaarafu-aktar", title: "نتعرف اكثر", html: couplesHtml() },
+  { slug: "jaraa-wa-sarahah", title: "جرأة وصراحة", html: dareAndHonestyHtml() },
+  { slug: "kasr-al-rotine", title: "كسر الروتين", html: breakRoutineHtml() },
+  { slug: "awal-maweed", title: "أول موعد", html: firstDateHtml() },
+];
 
 // The old bilingual English deck is retired in favor of "netaarafu-aktar".
 const retiredSlug = "date-night-deck";

@@ -96,6 +96,39 @@ const catalog = [
     price_aed: GAME_PRICE_AED,
     price_egp: GAME_PRICE_EGP,
   },
+  {
+    slug: "jaraa-wa-sarahah",
+    category: "couple_games",
+    file: "jaraa-wa-sarahah.pdf",
+    cover: "jaraa-wa-sarahah.jpg",
+    title: "جرأة وصراحة",
+    description:
+      "40 بطاقة جرأة وصراحة للأزواج — 20 سؤال صريح و20 تحدٍ محترم يتبادلان بالتناوب. أسئلة جريئة بصدق حقيقي، وتحديات ممتعة بلا إحراج، لتقرّبا من بعضكما أكثر.",
+    price_aed: GAME_PRICE_AED,
+    price_egp: GAME_PRICE_EGP,
+  },
+  {
+    slug: "kasr-al-rotine",
+    category: "couple_games",
+    file: "kasr-al-rotine.pdf",
+    cover: "kasr-al-rotine.jpg",
+    title: "كسر الروتين",
+    description:
+      "40 فكرة وسؤالًا مخصصة للمخطوبين والمتزوجين — لإعادة الشرارة وكسر الروتين اليومي، من التخطيط لموعد جديد إلى إحياء ذكريات البدايات.",
+    price_aed: GAME_PRICE_AED,
+    price_egp: GAME_PRICE_EGP,
+  },
+  {
+    slug: "awal-maweed",
+    category: "couple_games",
+    file: "awal-maweed.pdf",
+    cover: "awal-maweed.jpg",
+    title: "أول موعد",
+    description:
+      "40 سؤالًا خفيفًا وممتعًا مثالي لبداية علاقة جديدة — أجواء مريحة بلا ضغط، للتعارف الحقيقي بعيدًا عن الأسئلة الجدية أو الحرجة.",
+    price_aed: GAME_PRICE_AED,
+    price_egp: GAME_PRICE_EGP,
+  },
 ];
 
 // The old bilingual English deck is retired — hide it rather than delete it.

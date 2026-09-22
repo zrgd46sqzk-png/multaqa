@@ -7,6 +7,9 @@ import { guideHtml } from "./content/guide.mjs";
 import { courseHtml } from "./content/course.mjs";
 import { couplesHtml } from "./content/couples.mjs";
 import { visualPromptsHtml } from "./content/visualPrompts.mjs";
+import { dareAndHonestyHtml } from "./content/dareAndHonesty.mjs";
+import { breakRoutineHtml } from "./content/breakRoutine.mjs";
+import { firstDateHtml } from "./content/firstDate.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -23,6 +26,9 @@ const items = [
   { slug: "prompting-101-course", type: "page", html: courseHtml() },
   { slug: "professional-visual-prompts", type: "page", html: visualPromptsHtml() },
   { slug: "netaarafu-aktar", type: "slide", html: couplesHtml() },
+  { slug: "jaraa-wa-sarahah", type: "slide", html: dareAndHonestyHtml() },
+  { slug: "kasr-al-rotine", type: "slide", html: breakRoutineHtml() },
+  { slug: "awal-maweed", type: "slide", html: firstDateHtml() },
 ];
 
 function fullPage(bodyHtml, bodyClass) {
