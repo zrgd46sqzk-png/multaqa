@@ -6,6 +6,7 @@ import { promptsHtml } from "./content/prompts.mjs";
 import { guideHtml } from "./content/guide.mjs";
 import { courseHtml } from "./content/course.mjs";
 import { couplesHtml } from "./content/couples.mjs";
+import { visualPromptsHtml } from "./content/visualPrompts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -20,6 +21,7 @@ const items = [
   { slug: "ai-prompt-pack-productivity", type: "page", html: promptsHtml() },
   { slug: "beginners-guide-to-ai", type: "page", html: guideHtml() },
   { slug: "prompting-101-course", type: "page", html: courseHtml() },
+  { slug: "professional-visual-prompts", type: "page", html: visualPromptsHtml() },
   { slug: "netaarafu-aktar", type: "slide", html: couplesHtml() },
 ];
 

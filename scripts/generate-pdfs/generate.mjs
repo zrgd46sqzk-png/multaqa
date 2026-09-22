@@ -6,6 +6,7 @@ import { promptsHtml } from "./content/prompts.mjs";
 import { guideHtml } from "./content/guide.mjs";
 import { courseHtml } from "./content/course.mjs";
 import { couplesHtml } from "./content/couples.mjs";
+import { visualPromptsHtml } from "./content/visualPrompts.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(path.join(__dirname, "style.css"), "utf8");
@@ -19,6 +20,11 @@ const pageDocuments = [
   { slug: "ai-prompt-pack-productivity", title: "30 برومبت ذكاء اصطناعي للعمل والإنتاجية", html: promptsHtml() },
   { slug: "beginners-guide-to-ai", title: "دليل المبتدئين لاستخدام الذكاء الاصطناعي يوميًا", html: guideHtml() },
   { slug: "prompting-101-course", title: "أساسيات البرومبت: دورة عملية", html: courseHtml() },
+  {
+    slug: "professional-visual-prompts",
+    title: "برومبتات احترافية لتوليد وتعديل الصور والفيديو",
+    html: visualPromptsHtml(),
+  },
 ];
 
 const slideDocuments = [{ slug: "netaarafu-aktar", title: "نتعرف اكثر", html: couplesHtml() }];

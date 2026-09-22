@@ -66,6 +66,17 @@ const catalog = [
     price_egp: 450,
   },
   {
+    slug: "professional-visual-prompts",
+    category: "ai_products",
+    file: "professional-visual-prompts.pdf",
+    cover: "professional-visual-prompts.jpg",
+    title: "برومبتات احترافية لتوليد وتعديل الصور والفيديو",
+    description:
+      "أكثر من 30 برومبتًا بمواصفات استوديو حقيقية — إضاءة، عدسات، تدرجات لونية — لتوليد وتعديل الصور والفيديو بجودة استوديوهات الإنتاج. مقسّمة على 6 محاور: تصوير المنتجات، البورتريه والأزياء، المشاهد السينمائية، تعديل الصور، وتوليد وتحرير الفيديو.",
+    price_aed: 25,
+    price_egp: 250,
+  },
+  {
     slug: "netaarafu-aktar",
     category: "couple_games",
     file: "netaarafu-aktar.pdf",
